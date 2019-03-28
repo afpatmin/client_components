@@ -70,14 +70,14 @@ class LoginComponent implements OnDestroy {
   final String msgNewPassword =
       Intl.message('new password', name: 'new_password');
   final String msgToken = Intl.message('token', name: 'token');
-  final String forgotPassword =
+  final String msgForgotPassword =
       Intl.message('forgot password', name: 'forgot_password');
-  final String forgotPasswordDescription = Intl.message(
+  final String msgForgotPasswordDescription = Intl.message(
       'Enter your username and press send to begin resetting your password.',
       name: 'forgot_password_description',
       desc:
           'Direction on steps to take if the user wishes to restore his password.');
-  final String resetPasswordDescription = Intl.message(
+  final String msgResetPasswordDescription = Intl.message(
       'We have sent an email with a reset key to you. Paste it below to update your password.',
       name: 'reset_password_description',
       desc: 'Displayed to the user after having requested a new password.');
