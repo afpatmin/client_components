@@ -54,7 +54,7 @@ class GdprFormComponent implements OnDestroy {
       Intl.plural(1, one: 'issue', other: 'issues', args: [1], name: 'issue');
   final String msgComments = Intl.plural(2,
       one: 'comment', args: [2], other: 'comments', name: 'comment');
-  final String gdprFormAccept = Intl.message(
+  final String msgGdprFormAccept = Intl.message(
       'I hereby consent that above details are stored while the case is processed',
       name: 'gdpr_form_accept',
       desc:
