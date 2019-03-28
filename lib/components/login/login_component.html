@@ -1,0 +1,86 @@
+<fo-modal *ngIf="visible"
+          [visible]="true"
+          [showCloseButton]="false"
+          [title]="label"
+          [titleImageUrl]="titleImageUrl"
+          [error]="errorMessage">
+  <div class="padder">
+    <h3 class="title margin-bottom-x-small margin-top-x-small">{{stateLabels[state] | name}}</h3>
+    <div class="login-container"
+         *ngIf="state == 'login'">
+      <form>
+        <material-input [disabled]="loading"
+                        [label]="msgUsername"
+                        [(ngModel)]="username"
+                        (keyup)="onLoginKeyUp($event)">
+        </material-input>
+        <material-input [disabled]="loading"
+                        type="password"
+                        [label]="msgPassword"
+                        [displayBottomPanel]="false"
+                        [(ngModel)]="password"
+                        (keyup)="onLoginKeyUp($event)">
+        </material-input>
+      </form>
+      <p *ngIf="showForgotPassword"
+         class="forgot-password"
+         (click)="setState('forgot_password')">{{msgForgotPassword}}?</p>
+      <div class="button-container">
+        <material-button raised
+                         clear-size
+                         [disabled]="loading || username?.isEmpty != false || password?.isEmpty != false"
+                         (trigger)="onLogin()"> {{msgLogin}} </material-button>
+      </div>
+      <div class="row"
+           *ngIf="altUrl != null">
+        <div class="col text-center">
+          <p>
+            <a [href]="altUrl">{{altUrlTitle}}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="login-container"
+         *ngIf="state == 'forgot_password'">
+      <p>{{msgForgotPasswordDescription | name}}</p>
+      <material-input [disabled]="loading"
+                      [label]="msgUsername"
+                      floatingLabel
+                      [(ngModel)]="username"
+                      (keyup)="onRecoverPasswordKeyUp($event)">
+      </material-input>
+      <div class="button-container">
+        <material-button raised
+                         clear-size
+                         (trigger)="setState('login')"> {{msgBack | name}} </material-button>
+        <material-button raised
+                         clear-size
+                         [disabled]="loading || username?.isEmpty != false"
+                         (trigger)="onRecoverPassword()"> {{msgSend | name}} </material-button>
+      </div>
+    </div>
+    <div class="login-container"
+         *ngIf="state == 'reset_password'">
+      <p>{{msgResetPasswordDescription | name}}</p>
+      <material-input [disabled]="loading"
+                      [label]="msgToken"
+                      floatingLabel
+                      [(ngModel)]="token">
+      </material-input>
+      <material-input [disabled]="loading"
+                      [label]="msgNewPassword"
+                      floatingLabel
+                      [(ngModel)]="password">
+      </material-input>
+      <div class="button-container">
+        <material-button raised
+                         clear-size
+                         (trigger)="setState('login')"> {{msgBack}} </material-button>
+        <material-button raised
+                         clear-size
+                         [disabled]="loading || password?.isEmpty != false || token?.isEmpty != false"
+                         (trigger)="onUpdatePassword()"> {{msgSave}} </material-button>
+      </div>
+    </div>
+  </div>
+</fo-modal>
