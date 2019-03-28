@@ -5,7 +5,7 @@
           [titleImageUrl]="titleImageUrl"
           [error]="errorMessage">
   <div class="padder">
-    <h3 class="title margin-bottom-x-small margin-top-x-small">{{stateLabels[state] | name}}</h3>
+    <h3 class="title margin-bottom-x-small margin-top-x-small">{{stateLabels[state] | capitalize}}</h3>
     <div class="login-container"
          *ngIf="state == 'login'">
       <form>
@@ -42,7 +42,7 @@
     </div>
     <div class="login-container"
          *ngIf="state == 'forgot_password'">
-      <p>{{msgForgotPasswordDescription | name}}</p>
+      <p>{{msgForgotPasswordDescription | capitalize}}</p>
       <material-input [disabled]="loading"
                       [label]="msgUsername"
                       floatingLabel
@@ -52,16 +52,16 @@
       <div class="button-container">
         <material-button raised
                          clear-size
-                         (trigger)="setState('login')"> {{msgBack | name}} </material-button>
+                         (trigger)="setState('login')"> {{msgBack | capitalize}} </material-button>
         <material-button raised
                          clear-size
                          [disabled]="loading || username?.isEmpty != false"
-                         (trigger)="onRecoverPassword()"> {{msgSend | name}} </material-button>
+                         (trigger)="onRecoverPassword()"> {{msgSend | capitalize}} </material-button>
       </div>
     </div>
     <div class="login-container"
          *ngIf="state == 'reset_password'">
-      <p>{{msgResetPasswordDescription | name}}</p>
+      <p>{{msgResetPasswordDescription | capitalize}}</p>
       <material-input [disabled]="loading"
                       [label]="msgToken"
                       floatingLabel

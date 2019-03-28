@@ -5,7 +5,7 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/material_button/material_button.dart';
 import 'package:angular_components/material_input/material_input.dart';
 import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
-import 'package:fo_components/pipes/fo_name_pipe.dart';
+import 'package:fo_components/pipes/capitalize_pipe.dart';
 import 'package:intl/intl.dart';
 
 @Component(
@@ -18,7 +18,7 @@ import 'package:intl/intl.dart';
       MaterialButtonComponent,
       FoModalComponent
     ],
-    pipes: [NamePipe])
+    pipes: [CapitalizePipe])
 class LoginComponent implements OnDestroy {
   String token = '';
   bool visible = true;

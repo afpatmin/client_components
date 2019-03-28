@@ -10,7 +10,7 @@
                [style.background-color]="backgroundColor">
             <p *ngIf="expanded"
                class="fade-opacity"
-               [style.opacity]="animating ? 0 : 1">{{header | name}}</p>
+               [style.opacity]="animating ? 0 : 1">{{header | capitalize}}</p>
           </div>
           <div id="sidebar-list">
             <material-list *ngIf="expanded"
@@ -18,12 +18,12 @@
                            [style.opacity]="animating ? 0 : 1">
               <div group
                    *ngFor="let category of categories">
-                <div label>{{category.title | name}}</div>
+                <div label>{{category.title | capitalize}}</div>
                 <material-list-item *ngFor="let item of category.items"
                                     [class.active]="isActive(item)"
                                     (click)="router.navigate(item.url)">
                   <material-icon [icon]="item.icon"
-                                 baseline></material-icon>&nbsp;{{item.label | name}}
+                                 baseline></material-icon>&nbsp;{{item.label | capitalize}}
                 </material-list-item>
               </div>
             </material-list>
@@ -64,7 +64,7 @@
                 <h3 class="margin-top-none margin-bottom-x-small">
                   <material-icon [style.color]="backgroundColor"
                                  baseline
-                                 [icon]="pageIcon"></material-icon> {{pageHeader | name}}
+                                 [icon]="pageIcon"></material-icon> {{pageHeader | capitalize}}
                 </h3>
               </div>
               <div class="s2 col align-bottom text-right">

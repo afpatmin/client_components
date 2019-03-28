@@ -195,7 +195,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d0b837c0807b8de6fb9735e616676ba8423e9d65
+      resolved-ref: "98f278835e954251054afe9d1c8651eec2ba2972"
       url: "https://github.com/afpatmin/fo_components"
     source: git
     version: "0.1.7"

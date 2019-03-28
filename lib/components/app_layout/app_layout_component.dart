@@ -9,7 +9,7 @@ import 'package:angular_components/material_list/material_list.dart';
 import 'package:angular_components/material_list/material_list_item.dart';
 import 'package:angular_components/material_tooltip/material_tooltip.dart';
 import 'package:intl/intl.dart';
-import 'package:fo_components/pipes/fo_name_pipe.dart';
+import 'package:fo_components/pipes/capitalize_pipe.dart';
 import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
 
 @Component(
@@ -26,7 +26,7 @@ import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
       MaterialTooltipDirective,
       routerDirectives,
     ],
-    pipes: [NamePipe])
+    pipes: [CapitalizePipe])
 class AppLayoutComponent implements OnDestroy {
   AppLayoutComponent(this.router, this._domSanitizationService) {
     router.onRouteActivated.listen(_onRouteActivated);
