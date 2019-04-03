@@ -9,27 +9,27 @@
     <div class="login-container"
          *ngIf="state == 'login'">
       <form>
-        <material-input [disabled]="loading"
-                        [label]="msgUsername"
-                        [(ngModel)]="username"
-                        (keyup)="onLoginKeyUp($event)">
-        </material-input>
-        <material-input [disabled]="loading"
-                        type="password"
-                        [label]="msgPassword"
-                        [displayBottomPanel]="false"
-                        [(ngModel)]="password"
-                        (keyup)="onLoginKeyUp($event)">
-        </material-input>
+        <fo-text-input [disabled]="loading"
+                       [label]="msgUsername"
+                       [(ngModel)]="username"
+                       (keyup)="onLoginKeyUp($event)">
+        </fo-text-input>
+        <fo-text-input [disabled]="loading"
+                       type="password"
+                       [label]="msgPassword"
+                       [(ngModel)]="password"
+                       (keyup)="onLoginKeyUp($event)">
+        </fo-text-input>
       </form>
       <p *ngIf="showForgotPassword"
          class="forgot-password"
          (click)="setState('forgot_password')">{{msgForgotPassword}}?</p>
       <div class="button-container">
-        <material-button raised
-                         clear-size
-                         [disabled]="loading || username?.isEmpty != false || password?.isEmpty != false"
-                         (trigger)="onLogin()"> {{msgLogin}} </material-button>
+        <fo-button [label]="msgLogin | capitalize"
+                   clearSize
+                   [disabled]="loading || username?.isEmpty != false || password?.isEmpty != false"
+                   (trigger)="onLogin()">
+        </fo-button>
       </div>
       <div class="row"
            *ngIf="altUrl != null">
@@ -43,43 +43,42 @@
     <div class="login-container"
          *ngIf="state == 'forgot_password'">
       <p>{{msgForgotPasswordDescription | capitalize}}</p>
-      <material-input [disabled]="loading"
-                      [label]="msgUsername"
-                      floatingLabel
-                      [(ngModel)]="username"
-                      (keyup)="onRecoverPasswordKeyUp($event)">
-      </material-input>
+      <fo-text-input [disabled]="loading"
+                     [label]="msgUsername"
+                     [(ngModel)]="username"
+                     (keyup)="onRecoverPasswordKeyUp($event)">
+      </fo-text-input>
       <div class="button-container">
-        <material-button raised
-                         clear-size
-                         (trigger)="setState('login')"> {{msgBack | capitalize}} </material-button>
-        <material-button raised
-                         clear-size
-                         [disabled]="loading || username?.isEmpty != false"
-                         (trigger)="onRecoverPassword()"> {{msgSend | capitalize}} </material-button>
+        <fo-button [label]="msgBack | capitalize"
+                   clearSize
+                   (trigger)="setState('login')"></fo-button>
+        <fo-button [label]="msgSend | capitalize"
+                   clearSize
+                   [disabled]="loading || username?.isEmpty != false"
+                   (trigger)="onRecoverPassword()">
+        </fo-button>
       </div>
     </div>
     <div class="login-container"
          *ngIf="state == 'reset_password'">
       <p>{{msgResetPasswordDescription | capitalize}}</p>
-      <material-input [disabled]="loading"
-                      [label]="msgToken"
-                      floatingLabel
-                      [(ngModel)]="token">
-      </material-input>
-      <material-input [disabled]="loading"
-                      [label]="msgNewPassword"
-                      floatingLabel
-                      [(ngModel)]="password">
-      </material-input>
+      <fo-text-input [disabled]="loading"
+                     [label]="msgToken"
+                     [(ngModel)]="token">
+      </fo-text-input>
+      <fo-text-input [disabled]="loading"
+                     [label]="msgNewPassword"
+                     [(ngModel)]="password">
+      </fo-text-input>
       <div class="button-container">
-        <material-button raised
-                         clear-size
-                         (trigger)="setState('login')"> {{msgBack}} </material-button>
-        <material-button raised
-                         clear-size
-                         [disabled]="loading || password?.isEmpty != false || token?.isEmpty != false"
-                         (trigger)="onUpdatePassword()"> {{msgSave}} </material-button>
+        <fo-button [label]="msgBack | capitalize"
+                   clearSizxe
+                   (trigger)="setState('login')"> </fo-button>
+        <fo-button [label]="msgSave | capitalize"
+                   clearSize
+                   [disabled]="loading || password?.isEmpty != false || token?.isEmpty != false"
+                   (trigger)="onUpdatePassword()">
+        </fo-button>
       </div>
     </div>
   </div>

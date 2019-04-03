@@ -2,9 +2,10 @@ import 'dart:async';
 import 'dart:html' as html;
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/material_button/material_button.dart';
-import 'package:angular_components/material_input/material_input.dart';
+import 'package:angular_forms/angular_forms.dart';
+import 'package:fo_components/components/fo_button/fo_button_component.dart';
 import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
+import 'package:fo_components/components/fo_text_input/fo_text_input_component.dart';
 import 'package:fo_components/pipes/capitalize_pipe.dart';
 import 'package:intl/intl.dart';
 
@@ -14,9 +15,10 @@ import 'package:intl/intl.dart';
     templateUrl: 'login_component.html',
     directives: [
       NgIf,
-      materialInputDirectives,
-      MaterialButtonComponent,
-      FoModalComponent
+      formDirectives,
+      FoButtonComponent,
+      FoModalComponent,
+      FoTextInputComponent,
     ],
     pipes: [CapitalizePipe])
 class LoginComponent implements OnDestroy {
