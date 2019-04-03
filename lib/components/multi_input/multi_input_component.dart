@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 
 @Component(
   selector: 'multi-input',
-  templateUrl: 'multi_input.html',
+  templateUrl: 'multi_input_component.html',
 )
 class MultiInputComponent implements OnDestroy {
   final StreamController<List<String>> _valueChangeController =
