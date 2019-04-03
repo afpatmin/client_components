@@ -21,59 +21,48 @@
             </div>
             <div class="row">
               <div class="m6 col">
-                <material-input label="{{msgFirstname}}*"
-                                floatingLabel
-                                ngControl="firstname"
-                                [(ngModel)]="model.firstname"
-                                [maxCount]="50">
-                </material-input>
+                <fo-text-input label="{{msgFirstname}}*"
+                               ngControl="firstname"
+                               [(ngModel)]="model.firstname">
+                </fo-text-input>
               </div>
               <div class="m6 col">
-                <material-input label="{{msgLastname}}*"
-                                floatingLabel
-                                ngControl="lastname"
-                                [(ngModel)]="model.lastname"
-                                [maxCount]="50">
-                </material-input>
+                <fo-text-input label="{{msgLastname}}*"
+                               ngControl="lastname"
+                               [(ngModel)]="model.lastname">
+                </fo-text-input>
               </div>
             </div>
             <div class="row">
               <div class="m6 col">
-                <material-input label="{{msgPhone}}*"
-                                floatingLabel
-                                ngControl="phone"
-                                [(ngModel)]="model.phone"
-                                [maxCount]="15">
-                </material-input>
+                <fo-text-input label="{{msgPhone}}*"
+                               ngControl="phone"
+                               [(ngModel)]="model.phone">
+                </fo-text-input>
               </div>
               <div class="m6 col">
-                <material-input label="{{msgEmail}}*"
-                                floatingLabel
-                                ngControl="email"
-                                [(ngModel)]="model.email"
-                                [maxCount]="128">
-                </material-input>
+                <fo-text-input label="{{msgEmail}}*"
+                               ngControl="email"
+                               [(ngModel)]="model.email">
+                </fo-text-input>
               </div>
             </div>
             <div class="row">
               <div class="m6 col">
-                <fo-select label="{{msgIssue}}*"
-                           [sort]="false"
-                           [(selectedId)]="model.selected_issue"
-                           [options]="options">
-                </fo-select>
+                <fo-dropdown-select label="{{msgIssue}}*"
+                                    [(selectedId)]="model.selected_issue"
+                                    [options]="options">
+                </fo-dropdown-select>
               </div>
             </div>
             <div class="row">
               <div class="col">
-                <material-input [label]="msgComments"
-                                floatingLabel
-                                ngControl="comments"
-                                [(ngModel)]="model.comments"
-                                [maxCount]="1000"
-                                multiline
-                                rows="5">
-                </material-input>
+                <fo-textarea-input [label]="msgComments"
+                                   ngControl="comments"
+                                   [(ngModel)]="model.comments"
+                                   multiline
+                                   [rows]="5">
+                </fo-textarea-input>
               </div>
             </div>
             <div class="row">
@@ -89,9 +78,9 @@
       <div class="row"
            footer>
         <div class="col text-right">
-          <material-button raised
-                           (trigger)="submit()"
-                           [disabled]="!form.valid || !termsChecked"> {{msgSend}} </material-button>
+          <fo-button [label]="msgSend | capitalize"
+                     (trigger)="submit()"
+                     [disabled]="!form.valid || !termsChecked"></fo-button>
         </div>
       </div>
     </div>

@@ -193,21 +193,10 @@ packages:
   fo_components:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "98f278835e954251054afe9d1c8651eec2ba2972"
-      url: "https://github.com/afpatmin/fo_components"
-    source: git
-    version: "0.1.7"
-  fo_model:
-    dependency: transitive
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "0b125eb095ac651d8cfea08263286d53bac086b3"
-      url: "https://github.com/afpatmin/fo_model"
-    source: git
-    version: "1.0.0"
+      name: fo_components
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.2+1"
   front_end:
     dependency: transitive
     description:
@@ -229,15 +218,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
-  grid:
+  grid_css:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "996784ca1f79afc7d666c1b2d43545db38e6eba0"
-      url: "https://github.com/afpatmin/grid"
-    source: git
-    version: "0.1.0"
+      name: grid_css
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   html:
     dependency: transitive
     description:

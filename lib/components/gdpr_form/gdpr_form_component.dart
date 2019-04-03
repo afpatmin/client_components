@@ -1,14 +1,16 @@
 import 'dart:async';
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/material_button/material_button.dart';
 import 'package:angular_components/material_checkbox/material_checkbox.dart';
-import 'package:angular_components/material_input/material_input.dart';
 import 'package:angular_forms/angular_forms.dart';
+import 'package:fo_components/components/fo_button/fo_button_component.dart';
+import 'package:fo_components/components/fo_dropdown_list/fo_dropdown_option.dart';
+import 'package:fo_components/components/fo_dropdown_select/fo_dropdown_select_component.dart';
 import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
-import 'package:fo_components/components/fo_select/fo_select_component.dart';
+import 'package:fo_components/components/fo_text_input/fo_textarea_input_component.dart';
+import 'package:fo_components/components/fo_text_input/fo_text_input_component.dart';
+import 'package:fo_components/pipes/capitalize_pipe.dart';
 import 'package:fo_components/validators/fo_validators.dart';
-import 'package:fo_model/fo_model.dart';
 import 'package:intl/intl.dart';
 
 @Component(
@@ -20,19 +22,20 @@ import 'package:intl/intl.dart';
     directives: [
       FoModalComponent,
       formDirectives,
-      FoSelectComponent,
-      MaterialButtonComponent,
+      FoButtonComponent,
+      FoDropdownSelectComponent,
+      FoTextAreaInputComponent,
+      FoTextInputComponent,
       MaterialCheckboxComponent,
-      materialInputDirectives,
       NgIf
     ],
-    pipes: [])
+    pipes: [CapitalizePipe])
 class GdprFormComponent implements OnDestroy {
   final ControlGroup form;
   bool termsChecked = false;
   bool sent = false;
   final GdprModel model = GdprModel();
-  final List<FoModel> options;
+  final Map<String, List<FoDropdownOption>> options;
   final StreamController<bool> openController = StreamController();
   final StreamController<GdprModel> _submitController = StreamController();
   final String msgGdprFormInfo = Intl.message(
@@ -88,29 +91,37 @@ class GdprFormComponent implements OnDestroy {
           'comments': Control()
             ..validator = Validators.compose([Validators.maxLength(1000)])
         }),
-        options = [
-          FoModel()
-            ..id = Intl.message('I want to know my personal details',
-                name: 'gdpr_fetch_my_info'),
-          FoModel()
-            ..id = Intl.message(
-                'I want to access my personal details in a portable data',
-                name: 'gdpr_fetch_my_info_portable'),
-          FoModel()
-            ..id = Intl.message('I wish to change/update my information',
-                name: 'gdpr_change_my_info'),
-          FoModel()
-            ..id = Intl.message(
-                'I wish to limit how my data is being processed',
-                name: 'gdpr_limit_my_data_processing'),
-          FoModel()
-            ..id = Intl.message(
-                'I wish to oppose how my data is being processed',
-                name: 'gdpr_oppose_my_data_processing'),
-          FoModel()
-            ..id = Intl.message('I wish to erase all my data',
-                name: 'gdpr_erase_me')
-        ];
+        options = {
+          '': [
+            FoDropdownOption()
+              ..id = 'gdpr_fetch_my_info'
+              ..label = Intl.message('I want to know my personal details',
+                  name: 'gdpr_fetch_my_info'),
+            FoDropdownOption()
+              ..id = 'gdpr_fetch_my_info_portable'
+              ..label = Intl.message(
+                  'I want to access my personal details in a portable data',
+                  name: 'gdpr_fetch_my_info_portable'),
+            FoDropdownOption()
+              ..id = 'gdpr_change_my_info'
+              ..label = Intl.message('I wish to change/update my information',
+                  name: 'gdpr_change_my_info'),
+            FoDropdownOption()
+              ..id = 'gdpr_limit_my_data_processing'
+              ..label = Intl.message(
+                  'I wish to limit how my data is being processed',
+                  name: 'gdpr_limit_my_data_processing'),
+            FoDropdownOption()
+              ..id = 'gdpr_oppose_my_data_processing'
+              ..label = Intl.message(
+                  'I wish to oppose how my data is being processed',
+                  name: 'gdpr_oppose_my_data_processing'),
+            FoDropdownOption()
+              ..id = 'gdpr_erase_me'
+              ..label = Intl.message('I wish to erase all my data',
+                  name: 'gdpr_erase_me')
+          ]
+        };
 
   @Output('submit')
   Stream<GdprModel> get onSubmit => _submitController.stream;
