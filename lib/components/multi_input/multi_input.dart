@@ -4,6 +4,6 @@ import 'package:angular/angular.dart';
   selector: 'multi-input',
   templateUrl: 'multi_input.html',
 )
-class MultiInput {
+class MultiInputComponent {
   var name = 'Angular';
 }
