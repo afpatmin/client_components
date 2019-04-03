@@ -14,6 +14,9 @@ class MultiInputComponent implements OnDestroy {
   String label;
 
   @Input()
+  bool disabled = false;
+
+  @Input()
   List<String> value = [];
 
   @Output('valueChange')
