@@ -109,18 +109,21 @@
           }
           div#main-row {
             min-width: 315px;
-            #page-header {
-              margin-bottom: 1rem;
-              border-bottom: 2px solid #555;
-              material-icon {
-                ::ng-deep i {
-                  font-size: 3rem;
+            div.col {
+              overflow: visible;
+              #page-header {
+                margin-bottom: 1rem;
+                border-bottom: 2px solid #555;
+                material-icon {
+                  ::ng-deep i {
+                    font-size: 3rem;
+                  }
                 }
               }
-            }
-            div#page-content {
-              margin-bottom: 2rem; //margin-left: 0.5em;
-              overflow-x: auto;
+              div#page-content {
+                margin-bottom: 2rem; //margin-left: 0.5em;
+                overflow-x: auto;
+              }
             }
           }
         }
