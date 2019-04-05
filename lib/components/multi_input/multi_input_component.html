@@ -1,3 +1,16 @@
 <fo-text-input [label]="label"
-               [disabled]="disabled">
+               [disabled]="disabled"
+               [(ngModel)]="model"           
+               (change)="onChange($event)"    
+               [actionButtonLabel]="msgAdd | capitalize"
+               (actionButtonTrigger)="onAdd()">
 </fo-text-input>
+<div id="output">
+  <fo-button *ngFor="let element of value"
+             dense
+             clearSize
+             [disabled]="disabled"             
+             [label]="element"
+             (trigger)="onRemove(element)">
+  </fo-button>
+</div>
