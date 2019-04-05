@@ -1,1 +1,16 @@
-<div>TIME INPUT -- NOT IMPLEMENTED</div>
+<fo-label [value]="label">
+  <div class="selectContainer"
+       id="hour">
+    <fo-dropdown-select [disabled]="disabled"
+                        [options]="hourOptions"
+                        [(selectedId)]="selectedHour">
+    </fo-dropdown-select>
+  </div>
+  <div class="selectContainer"
+       id="minute">
+    <fo-dropdown-select [disabled]="disabled"
+                        [options]="minuteOptions"
+                        [(selectedId)]="selectedMinute">
+    </fo-dropdown-select>
+  </div>
+</fo-label>
