@@ -27,7 +27,8 @@
     <p *ngIf="showForgotPassword"
        class="forgot-password"
        (click)="setState('forgot_password')">{{msgForgotPassword}}?</p>
-    <div class="button-container">
+    <div footer
+         class="button-container">
       <fo-button [label]="msgLogin | capitalize"
                  clearSize
                  dense
@@ -53,11 +54,16 @@
                    [(ngModel)]="username"
                    (keyup)="onRecoverPasswordKeyUp($event)">
     </fo-text-input>
-    <div class="button-container">
+    <div footer
+         class="button-container">
       <fo-button [label]="msgBack | capitalize"
+                 dense
+                 white
                  clearSize
                  (trigger)="setState('login')"></fo-button>
       <fo-button [label]="msgSend | capitalize"
+                 dense
+                 white
                  clearSize
                  [disabled]="loading || username?.isEmpty != false"
                  (trigger)="onRecoverPassword()">
@@ -75,11 +81,16 @@
                    [label]="msgNewPassword"
                    [(ngModel)]="password">
     </fo-text-input>
-    <div class="button-container">
+    <div footer
+         class="button-container">
       <fo-button [label]="msgBack | capitalize"
-                 clearSizxe
+                 dense
+                 white
+                 clearSize
                  (trigger)="setState('login')"> </fo-button>
       <fo-button [label]="msgSave | capitalize"
+                 dense
+                 white
                  clearSize
                  [disabled]="loading || password?.isEmpty != false || token?.isEmpty != false"
                  (trigger)="onUpdatePassword()">
