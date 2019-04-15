@@ -5,25 +5,16 @@
     text-align: center;
   }
 
-  div.login-container {
-    max-width: 100%;
-    min-width: 200px;
-
-    a {
-      font-size: 0.9em;
-      text-decoration: none;
-      color: #333;
-    }
-
-    p.forgot-password {
-      text-align: right;
-      margin: 0;
-      font-size: 0.8em;
-      cursor: pointer;
-    }
-
-    div.button-container {      
-      text-align: right;
-    }
+  a {
+    font-size: 0.9em;
+    text-decoration: none;
+    color: #333;
   }
+
+  p.forgot-password {
+    text-align: right;
+    margin: 0;
+    font-size: 0.8em;
+    cursor: pointer;
+  }  
 }

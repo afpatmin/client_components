@@ -9,8 +9,7 @@
          alt="logo" />
   </div>
   <p class="title margin-bottom-small margin-top-medium">{{stateLabels[state] | capitalize}}</p>
-  <div class="login-container"
-       *ngIf="state == 'login'">
+  <ng-container *ngIf="state == 'login'">
     <form>
       <fo-text-input [disabled]="loading"
                      [label]="msgUsername"
@@ -28,7 +27,7 @@
        class="forgot-password"
        (click)="setState('forgot_password')">{{msgForgotPassword}}?</p>
     <div footer
-         class="button-container">
+         class="text-right">
       <fo-button [label]="msgLogin | capitalize"
                  clearSize
                  dense
@@ -45,9 +44,8 @@
         </p>
       </div>
     </div>
-  </div>
-  <div class="login-container"
-       *ngIf="state == 'forgot_password'">
+  </ng-container>
+  <ng-container *ngIf="state == 'forgot_password'">
     <p>{{msgForgotPasswordDescription | capitalize}}</p>
     <fo-text-input [disabled]="loading"
                    [label]="msgUsername"
@@ -55,7 +53,7 @@
                    (keyup)="onRecoverPasswordKeyUp($event)">
     </fo-text-input>
     <div footer
-         class="button-container">
+         class="text-right">
       <fo-button [label]="msgBack | capitalize"
                  dense
                  white
@@ -69,9 +67,8 @@
                  (trigger)="onRecoverPassword()">
       </fo-button>
     </div>
-  </div>
-  <div class="login-container"
-       *ngIf="state == 'reset_password'">
+  </ng-container>
+  <ng-container *ngIf="state == 'reset_password'">
     <p>{{msgResetPasswordDescription | capitalize}}</p>
     <fo-text-input [disabled]="loading"
                    [label]="msgToken"
@@ -82,7 +79,7 @@
                    [(ngModel)]="password">
     </fo-text-input>
     <div footer
-         class="button-container">
+         class="text-right">
       <fo-button [label]="msgBack | capitalize"
                  dense
                  white
@@ -96,5 +93,5 @@
                  (trigger)="onUpdatePassword()">
       </fo-button>
     </div>
-  </div>
+  </ng-container>
 </fo-modal>
