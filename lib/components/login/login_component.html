@@ -8,7 +8,7 @@
          [src]="titleImageUrl"
          alt="logo" />
   </div>
-  <h4 class="title margin-bottom-small margin-top-medium">{{stateLabels[state] | capitalize}}</h4>
+  <h4 class="title margin-bottom-small margin-top-medium text-center">{{stateLabels[state] | capitalize}}</h4>
   <ng-container *ngIf="state == 'login'">
     <form>
       <fo-text-input [disabled]="loading"
