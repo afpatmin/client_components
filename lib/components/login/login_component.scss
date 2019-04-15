@@ -1,29 +1,30 @@
 :host {
-  div.login-container {
-  max-width: 100%;
-  min-width: 200px;
-
   img {
     width: 150px;
     display: block;
     text-align: center;
   }
-  
-  a {
-    font-size: 0.9em;
-    text-decoration: none;
-    color: #333;
-  }
 
-  p.forgot-password {
-    text-align: right;
-    margin: 0;
-    font-size: 0.8em;
-    cursor: pointer;
-  }
+  div.login-container {
+    max-width: 100%;
+    min-width: 200px;
 
-  div.button-container {
-    margin-top: 1.5em;
-    text-align: right;
+    a {
+      font-size: 0.9em;
+      text-decoration: none;
+      color: #333;
+    }
+
+    p.forgot-password {
+      text-align: right;
+      margin: 0;
+      font-size: 0.8em;
+      cursor: pointer;
+    }
+
+    div.button-container {
+      margin-top: 1.5em;
+      text-align: right;
+    }
   }
-}}    
+}

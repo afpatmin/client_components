@@ -6,7 +6,7 @@
   <img *ngIf="titleImageUrl != null"
        [src]="titleImageUrl"
        alt="logo" />
-  <p class="title margin-bottom-small margin-top-x-small text-center">{{stateLabels[state] | capitalize}}</p>
+  <p class="title margin-bottom-small margin-top-x-small">{{stateLabels[state] | capitalize}}</p>
   <div class="login-container"
        *ngIf="state == 'login'">
     <form>

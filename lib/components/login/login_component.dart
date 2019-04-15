@@ -42,14 +42,19 @@ class LoginComponent implements OnDestroy {
 
   @Input()
   String password;
+
   @Input()
   String errorMessage;
+
   @Input()
   bool showForgotPassword = true;
+
   @Input()
   String label;
+
   @Input()
   String state;
+
   @Input()
   String titleImageUrl;
 
@@ -63,7 +68,6 @@ class LoginComponent implements OnDestroy {
   bool loading = false;
 
   final String msgUsername = Intl.message('username', name: 'username');
-
   final String msgPassword = Intl.message('password', name: 'password');
   final String msgSend = Intl.message('send', name: 'send');
   final String msgSave = Intl.message('save', name: 'save');
