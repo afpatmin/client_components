@@ -14,11 +14,12 @@ import 'package:intl/intl.dart';
     styleUrls: ['login_component.css'],
     templateUrl: 'login_component.html',
     directives: [
-      NgIf,
-      formDirectives,
       FoButtonComponent,
       FoModalComponent,
+      formDirectives,
       FoTextInputComponent,
+      NgClass,
+      NgIf,
     ],
     pipes: [CapitalizePipe])
 class LoginComponent implements OnDestroy {
