@@ -3,10 +3,12 @@
           [showCloseButton]="false"
           [header]="label"
           [error]="errorMessage">
-  <img *ngIf="titleImageUrl != null"
-       [src]="titleImageUrl"
-       alt="logo" />
-  <p class="title margin-bottom-small margin-top-x-small">{{stateLabels[state] | capitalize}}</p>
+  <div class="margin-bottom-medium">
+    <img *ngIf="titleImageUrl != null"
+         [src]="titleImageUrl"
+         alt="logo" />
+  </div>
+  <p class="title margin-bottom-small margin-top-medium">{{stateLabels[state] | capitalize}}</p>
   <div class="login-container"
        *ngIf="state == 'login'">
     <form>
