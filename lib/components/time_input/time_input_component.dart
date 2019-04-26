@@ -46,7 +46,9 @@ class TimeInputComponent implements OnDestroy {
   String get selectedHour {
     try {
       return time == null ? '00' : time.substring(0, 2);
-    } on RangeError catch (e) {
+    }
+    // ignore: avoid_catching_errors
+    on RangeError catch (e) {
       print(e);
       return null;
     }
@@ -55,7 +57,9 @@ class TimeInputComponent implements OnDestroy {
   String get selectedMinute {
     try {
       return time == null ? '00' : time.substring(3, 5);
-    } on RangeError catch (e) {
+    }
+    // ignore: avoid_catching_errors
+    on RangeError catch (e) {
       print(e);
       return null;
     }
@@ -64,13 +68,13 @@ class TimeInputComponent implements OnDestroy {
   set selectedHour(String value) {
     final hour = value == null ? '00' : value;
     time = '$hour:$selectedMinute';
-    
+
     _timeController.add(time);
   }
 
   set selectedMinute(String value) {
     final minute = value == null ? '00' : value;
-    time = '$selectedHour:$minute';    
+    time = '$selectedHour:$minute';
     _timeController.add(time);
   }
 
