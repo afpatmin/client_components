@@ -1,85 +1,102 @@
 <fo-modal *ngIf="visible"
           [visible]="true"
           [showCloseButton]="false"
-          [title]="label"
-          [titleImageUrl]="titleImageUrl"
+          [header]="label"
           [error]="errorMessage">
-  <div class="padder">
-    <h3 class="title margin-bottom-x-small margin-top-x-small">{{stateLabels[state] | capitalize}}</h3>
-    <div class="login-container"
-         *ngIf="state == 'login'">
-      <form>
-        <fo-text-input [disabled]="loading"
-                       [label]="msgUsername"
-                       [(ngModel)]="username"
-                       (keyup)="onLoginKeyUp($event)">
-        </fo-text-input>
-        <fo-text-input [disabled]="loading"
-                       type="password"
-                       [label]="msgPassword"
-                       [(ngModel)]="password"
-                       (keyup)="onLoginKeyUp($event)">
-        </fo-text-input>
-      </form>
-      <p *ngIf="showForgotPassword"
-         class="forgot-password"
-         (click)="setState('forgot_password')">{{msgForgotPassword}}?</p>
-      <div class="button-container">
-        <fo-button [label]="msgLogin | capitalize"
-                   clearSize
-                   [disabled]="loading || username?.isEmpty != false || password?.isEmpty != false"
-                   (trigger)="onLogin()">
-        </fo-button>
-      </div>
-      <div class="row"
-           *ngIf="altUrl != null">
-        <div class="col text-center">
-          <p>
-            <a [href]="altUrl">{{altUrlTitle}}</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="login-container"
-         *ngIf="state == 'forgot_password'">
-      <p>{{msgForgotPasswordDescription | capitalize}}</p>
+  <div>
+    <img *ngIf="titleImageUrl != null"
+         [src]="titleImageUrl"
+         alt="logo" />
+  </div>
+  <h4 class="title margin-bottom-small margin-top-medium text-center">{{stateLabels[state] | capitalize}}</h4>
+  <ng-container *ngIf="state == 'login'">
+    <form>
       <fo-text-input [disabled]="loading"
                      [label]="msgUsername"
                      [(ngModel)]="username"
-                     (keyup)="onRecoverPasswordKeyUp($event)">
-      </fo-text-input>
-      <div class="button-container">
-        <fo-button [label]="msgBack | capitalize"
-                   clearSize
-                   (trigger)="setState('login')"></fo-button>
-        <fo-button [label]="msgSend | capitalize"
-                   clearSize
-                   [disabled]="loading || username?.isEmpty != false"
-                   (trigger)="onRecoverPassword()">
-        </fo-button>
-      </div>
-    </div>
-    <div class="login-container"
-         *ngIf="state == 'reset_password'">
-      <p>{{msgResetPasswordDescription | capitalize}}</p>
-      <fo-text-input [disabled]="loading"
-                     [label]="msgToken"
-                     [(ngModel)]="token">
+                     (keyup)="onLoginKeyUp($event)">
       </fo-text-input>
       <fo-text-input [disabled]="loading"
-                     [label]="msgNewPassword"
-                     [(ngModel)]="password">
+                     type="password"
+                     [label]="msgPassword"
+                     [(ngModel)]="password"
+                     (keyup)="onLoginKeyUp($event)">
       </fo-text-input>
-      <div class="button-container">
-        <fo-button [label]="msgBack | capitalize"
-                   clearSizxe
-                   (trigger)="setState('login')"> </fo-button>
-        <fo-button [label]="msgSave | capitalize"
-                   clearSize
-                   [disabled]="loading || password?.isEmpty != false || token?.isEmpty != false"
-                   (trigger)="onUpdatePassword()">
-        </fo-button>
+    </form>
+    <p *ngIf="showForgotPassword"
+       class="forgot-password"
+       (click)="setState('forgot_password')">{{msgForgotPassword}}?</p>
+  </ng-container>
+  <ng-container *ngIf="state == 'forgot_password'">
+    <p>{{msgForgotPasswordDescription | capitalize}}</p>
+    <fo-text-input [disabled]="loading"
+                   [label]="msgUsername"
+                   [(ngModel)]="username"
+                   (keyup)="onRecoverPasswordKeyUp($event)">
+    </fo-text-input>
+  </ng-container>
+  <ng-container *ngIf="state == 'reset_password'">
+    <p>{{msgResetPasswordDescription | capitalize}}</p>
+    <fo-text-input [disabled]="loading"
+                   [label]="msgToken"
+                   [(ngModel)]="token">
+    </fo-text-input>
+    <fo-text-input [disabled]="loading"
+                   [label]="msgNewPassword"
+                   [(ngModel)]="password">
+    </fo-text-input>
+  </ng-container>
+
+  <div footer
+       class="text-right">
+    <fo-button *ngIf="state == 'login'"
+               [label]="msgLogin | capitalize"
+               clearSize
+               dense
+               white
+               [disabled]="loading || username?.isEmpty != false || password?.isEmpty != false"
+               (trigger)="onLogin()">
+    </fo-button>
+    <ng-container *ngIf="state == 'forgot_password'">
+      <fo-button [label]="msgBack | capitalize"
+                 dense
+                 white
+                 clearSize
+                 (trigger)="setState('login')"></fo-button>
+      <fo-button [label]="msgSend | capitalize"
+                 dense
+                 white
+                 clearSize
+                 [disabled]="loading || username?.isEmpty != false"
+                 (trigger)="onRecoverPassword()">
+      </fo-button>
+    </ng-container>
+    <ng-container *ngIf="state == 'reset_password'">
+      <fo-button [label]="msgBack | capitalize"
+                 dense
+                 white
+                 clearSize
+                 (trigger)="setState('login')"> </fo-button>
+      <fo-button [label]="msgSave | capitalize"
+                 dense
+                 white
+                 clearSize
+                 [disabled]="loading || password?.isEmpty != false || token?.isEmpty != false"
+                 (trigger)="onUpdatePassword()">
+      </fo-button>
+    </ng-container>
+
+
+
+    <div class="row"
+         *ngIf="altUrl != null">
+      <div class="col text-center">
+        <p>
+          <a [href]="altUrl">{{altUrlTitle}}</a>
+        </p>
       </div>
     </div>
   </div>
+
+
 </fo-modal>
