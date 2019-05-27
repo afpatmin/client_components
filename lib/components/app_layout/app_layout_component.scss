@@ -4,25 +4,32 @@
   .box-shadow {
     @include boxShadow();
   }
+
   div.transformer {
     position: relative;
     height: 100%;
     display: block;
     top: 0;
     left: 0;
+
     .fade-opacity {
       -webkit-transition: opacity 200ms ease;
       -moz-transition: opacity 200ms ease;
       -o-transition: opacity 200ms ease;
       transition: opacity 200ms ease;
     }
+
     table {
       width: 100%;
       margin: 0;
       border-collapse: collapse;
       table-layout: fixed;
+
       tr {
-        td {
+        td:last-child {
+          padding: 0 2px;
+        }
+        td {          
           overflow-y: auto;
           overflow-x: auto;
           vertical-align: top;
@@ -30,6 +37,7 @@
           -moz-transition: width 100ms ease;
           -o-transition: width 100ms ease;
           transition: width 100ms ease;
+
           div#sidebar {
             display: flex;
             flex-direction: column;
@@ -46,9 +54,11 @@
             padding: 0;
             top: 0;
             left: 0;
+
             div#sidebar-header {
               flex: none;
               height: 7.5rem;
+
               p {
                 margin: 5.5rem 1rem 0 1rem;
                 color: white;
@@ -59,38 +69,46 @@
                 vertical-align: middle;
               }
             }
+
             #sidebar-list {
               flex: 1;
               overflow-y: auto;
               -ms-overflow-style: none;
+
               material-list {
                 material-list-item {
                   material-icon {
                     color: #888;
                   }
                 }
+
                 material-list-item.active {
                   background-color: #ddd;
                 }
               }
             }
+
             #sidebar-list::-webkit-scrollbar {
               width: 0 !important
             }
+
             div.mini-item {
               material-icon {
                 color: #888;
               }
             }
+
             div.mini-item:hover,
             div.mini-item.active {
               background-color: #eee;
             }
+
             hr {
               margin-top: 0.5em;
               margin-bottom: 0.5em;
             }
           }
+
           div#toggle {
             flex: 0;
             -webkit-user-select: none;
@@ -103,25 +121,31 @@
             border-top: 1px solid #ddd;
             background-color: #eee;
             padding: 0.5rem 0;
+
             material-icon {
               margin-right: 0.5rem;
             }
           }
+
           div#main-row {
             min-width: 315px;
+
             div.col {
               overflow: visible;
+
               #page-header {
                 margin-bottom: 1rem;
                 border-bottom: 2px solid #555;
+
                 material-icon {
                   ::ng-deep i {
                     font-size: 3rem;
                   }
                 }
               }
+
               div#page-content {
-                margin-bottom: 2rem;                
+                margin-bottom: 2rem;
               }
             }
           }
@@ -140,9 +164,10 @@
           td#sidebarCol {
             display: none;
           }
+
           td {
-            padding: 0 2px;
             div#main-row {
+
               //padding-top: 0 !important;
               div#page-header {
                 display: none;
