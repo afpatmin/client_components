@@ -128,8 +128,10 @@ class LoginComponent implements OnDestroy {
   }
 
   void onLoginKeyUp(html.KeyboardEvent e) {
-    if (username?.isNotEmpty == false &&
-        password?.isNotEmpty != false &&
+    if (username != null &&
+        username.isNotEmpty &&
+        password != null &&
+        password.isNotEmpty &&
         (e.keyCode == html.KeyCode.ENTER ||
             e.keyCode == html.KeyCode.MAC_ENTER)) {
       onLogin();

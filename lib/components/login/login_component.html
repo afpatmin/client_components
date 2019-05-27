@@ -34,6 +34,8 @@
   <ng-container *ngIf="state == 'forgot_password'">
     <p>{{msgForgotPasswordDescription | capitalize}}</p>
     <fo-text-input [disabled]="loading"
+                   dense
+                   noFocusShadow
                    [label]="msgUsername"
                    [(ngModel)]="username"
                    (keyup)="onRecoverPasswordKeyUp($event)">
@@ -42,10 +44,14 @@
   <ng-container *ngIf="state == 'reset_password'">
     <p>{{msgResetPasswordDescription | capitalize}}</p>
     <fo-text-input [disabled]="loading"
+                   dense
+                   noFocusShadow
                    [label]="msgToken"
                    [(ngModel)]="token">
     </fo-text-input>
     <fo-text-input [disabled]="loading"
+                   dense
+                   noFocusShadow
                    [label]="msgNewPassword"
                    [(ngModel)]="password">
     </fo-text-input>
