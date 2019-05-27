@@ -12,11 +12,15 @@
   <ng-container *ngIf="state == 'login'">
     <form>
       <fo-text-input [disabled]="loading"
+                     noFocusShadow
+                     dense
                      [label]="msgUsername"
                      [(ngModel)]="username"
                      (keyup)="onLoginKeyUp($event)">
       </fo-text-input>
       <fo-text-input [disabled]="loading"
+                     dense
+                     noFocusShadow
                      type="password"
                      [label]="msgPassword"
                      [(ngModel)]="password"
@@ -46,7 +50,6 @@
                    [(ngModel)]="password">
     </fo-text-input>
   </ng-container>
-
   <div footer
        class="text-right">
     <fo-button *ngIf="state == 'login'"
@@ -85,9 +88,6 @@
                  (trigger)="onUpdatePassword()">
       </fo-button>
     </ng-container>
-
-
-
     <div class="row"
          *ngIf="altUrl != null">
       <div class="col text-center">
@@ -97,6 +97,4 @@
       </div>
     </div>
   </div>
-
-
 </fo-modal>
