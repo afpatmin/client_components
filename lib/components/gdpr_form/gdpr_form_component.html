@@ -21,6 +21,14 @@
             </div>
             <div class="row">
               <div class="m6 col">
+                <fo-dropdown-select label="{{msgIssue}}*"
+                                    [(selectedId)]="model.selected_issue"
+                                    [options]="options">
+                </fo-dropdown-select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="m6 col">
                 <fo-text-input label="{{msgFirstname}}*"
                                ngControl="firstname"
                                [(ngModel)]="model.firstname">
@@ -48,14 +56,6 @@
               </div>
             </div>
             <div class="row">
-              <div class="m6 col">
-                <fo-dropdown-select label="{{msgIssue}}*"
-                                    [(selectedId)]="model.selected_issue"
-                                    [options]="options">
-                </fo-dropdown-select>
-              </div>
-            </div>
-            <div class="row">
               <div class="col">
                 <fo-textarea-input [label]="msgComments"
                                    ngControl="comments"
@@ -66,7 +66,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col text-right">
+              <div class="col">
                 <material-checkbox [label]="msgGdprFormAccept"
                                    [(checked)]="termsChecked">
                 </material-checkbox>
