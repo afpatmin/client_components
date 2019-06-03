@@ -5,6 +5,7 @@
           [error]="errorMessage">
   <div>
     <img *ngIf="titleImageUrl != null"
+         class="margin-top-medium"
          [src]="titleImageUrl"
          alt="logo" />
   </div>
@@ -94,13 +95,8 @@
                  (trigger)="onUpdatePassword()">
       </fo-button>
     </ng-container>
-    <div class="row"
-         *ngIf="altUrl != null">
-      <div class="col text-center">
-        <p>
-          <a [href]="altUrl">{{altUrlTitle}}</a>
-        </p>
-      </div>
-    </div>
+    <p class="text-center margin-top-x-small margin-bottom-x-small" *ngIf="altUrl != null">
+      <a [href]="altUrl">{{altUrlTitle}}</a>
+    </p>
   </div>
 </fo-modal>
