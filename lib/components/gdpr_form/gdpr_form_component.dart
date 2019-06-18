@@ -29,7 +29,9 @@ import 'package:intl/intl.dart';
       MaterialCheckboxComponent,
       NgIf
     ],
-    pipes: [CapitalizePipe])
+    pipes: [
+      CapitalizePipe
+    ])
 class GdprFormComponent implements OnDestroy {
   final ControlGroup form;
   bool termsChecked = false;

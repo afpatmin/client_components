@@ -35,7 +35,7 @@ class MultiInputComponent implements OnDestroy {
   }
 
   void onRemove(String v) {
-    value.remove(v);    
+    value.remove(v);
     _valueChangeController.add(value);
   }
 
