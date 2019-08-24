@@ -94,7 +94,7 @@ class LoginComponent implements OnDestroy {
               Intl.message('forgot password', name: 'forgot_password'),
           'login': Intl.message('login', name: 'login'),
           'reset_password':
-              Intl.message('reset_password', name: 'reset_password'),
+              Intl.message('reset password', name: 'reset_password'),
         } {
     setState('login');
   }
