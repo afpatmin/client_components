@@ -1,23 +1,50 @@
 :host {
-  fo-text-input {
-    margin-top: 10px;
-  }
-  img {
-    width: 200px;
-    display: block;    
-    margin: 0 auto;
-  }
+  div#loginContent {
+    width: 250px;
+    fo-text-input {
+      margin-top: 5px;
+    }
+    img {
+      width: 100%;
+      display: block;
+      margin: 0;
+    }
 
-  a {
-    font-size: 0.9em;
-    text-decoration: none;
-    color: #333;
-  }
+    a {
+      font-size: 0.9em;
+      text-decoration: none;
+      color: #333;
+    }
 
-  p.forgot-password {
-    text-align: right;
-    margin: 0;
-    font-size: 0.8em;
-    cursor: pointer;
+    h4#title {
+      margin-top: 0.5em;
+      margin-bottom: 0.25em;
+    }
+
+    p#forgotPassword {
+      text-align: right;
+      margin: 0.25em 0 0 0;
+      font-size: 0.8em;
+      cursor: pointer;
+    }
+
+    p#forgotPasswordDescription,
+    p#resetPasswordDescription {
+      margin-top: 0.25em;
+      font-size: 0.9em;
+    }
+
+    div#footer {
+      text-align: right;
+      fo-button {
+        margin: 1em 0 0 0.25em;
+      }
+
+      p#altUrl {
+        text-align: center;
+        margin-top: 1em;
+        margin-bottom: 0;
+      }
+    }
   }
 }

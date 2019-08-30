@@ -16,7 +16,8 @@ import 'package:fo_components/pipes/capitalize_pipe.dart';
       formDirectives,
       FoButtonComponent,
       FoTextInputComponent,
-      NgFor
+      NgFor,
+      NgIf,
     ],
     pipes: [
       CapitalizePipe
@@ -35,13 +36,11 @@ class MultiInputComponent implements OnDestroy {
   }
 
   void onRemove(String v) {
-    value.remove(v);    
+    value.remove(v);
     _valueChangeController.add(value);
   }
 
-  void onChange(Object event) {
-    print(event);
-  }
+  void onChange(Object event) {}
 
   String model;
 
