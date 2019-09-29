@@ -1,6 +1,10 @@
+@import "package:fo_components/components/fo_modal/mixins";
+//@import "package:fo_components/components/fo_text_input/mixins";
+
 :host {
+  @include fo-modal-width(300px);
+  //@include fo-text-input-vertical-padding(5px, 5px);
   div#loginContent {
-    width: 250px;
     fo-text-input {
       margin-top: 5px;
     }
