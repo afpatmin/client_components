@@ -10,19 +10,18 @@
            [src]="titleImageUrl"
            alt="logo" />
     </div>
-    <!--<h4 id="title">{{stateLabels[state] | capitalize}}</h4>-->
     <ng-container *ngIf="state == 'login'">
       <form>
         <fo-text-input [disabled]="loading"
                        noFocusShadow
-                       [label]="msgUsername"
+                       [placeholder]="msgUsername"
                        [(ngModel)]="username"
                        (keyup)="onLoginKeyUp($event)">
         </fo-text-input>
         <fo-text-input [disabled]="loading"
                        noFocusShadow
                        type="password"
-                       [label]="msgPassword"
+                       [placeholder]="msgPassword"
                        [(ngModel)]="password"
                        (keyup)="onLoginKeyUp($event)">
         </fo-text-input>
@@ -35,7 +34,7 @@
       <p id="forgotPasswordDescription">{{msgForgotPasswordDescription | capitalize}}</p>
       <fo-text-input noFocusShadow
                      [disabled]="loading"
-                     [label]="msgUsername"
+                     [placeholder]="msgUsername"
                      [(ngModel)]="username"
                      (keyup)="onRecoverPasswordKeyUp($event)">
       </fo-text-input>
@@ -44,12 +43,12 @@
       <p id="resetPasswordDescription">{{msgResetPasswordDescription | capitalize}}</p>
       <fo-text-input noFocusShadow
                      [disabled]="loading"
-                     [label]="msgToken"
+                     [placeholder]="msgToken"
                      [(ngModel)]="token">
       </fo-text-input>
       <fo-text-input noFocusShadow
                      [disabled]="loading"
-                     [label]="msgNewPassword"
+                     [placeholder]="msgNewPassword"
                      [(ngModel)]="password">
       </fo-text-input>
     </ng-container>
