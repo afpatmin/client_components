@@ -1,6 +1,7 @@
 @import '../../mixins';
 
 :host {
+
   .box-shadow {
     @include boxShadow();
   }
@@ -86,6 +87,9 @@
                   background-color: #ddd;
                 }
               }
+              div#collapsedList {
+                margin-top: 0.5em;
+              }
             }
 
             #sidebar-list::-webkit-scrollbar {
@@ -107,6 +111,22 @@
               margin-top: 0.5em;
               margin-bottom: 0.5em;
             }
+          }
+          div#scrollIndicator {
+            cursor: pointer;
+            text-align: right;
+            background-color: rgba(230,230,230,1);
+            padding: 0.5em 0;
+            color: black;
+            position: absolute;
+            bottom: 43px;
+            width: 100%;     
+            material-icon {
+              margin-right: 0.5em;
+            }       
+          }
+          div#scrollIndicator.expanded {
+            background-color: rgba(0,0,0,0.1);
           }
 
           div#toggle {

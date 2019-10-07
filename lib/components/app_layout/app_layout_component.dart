@@ -27,8 +27,8 @@ import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
       routerDirectives,
     ],
     pipes: [CapitalizePipe])
-class AppLayoutComponent implements OnDestroy {
-  AppLayoutComponent(this.router, this._domSanitizationService) {
+class AppLayoutComponent implements OnDestroy, AfterViewInit {
+  AppLayoutComponent(this.router, this._domSanitizationService, this._changeDetectorRef) {
     router.onRouteActivated.listen(_onRouteActivated);
   }
 
@@ -78,9 +78,18 @@ class AppLayoutComponent implements OnDestroy {
   }
 
   String get sidebarWidth => (expanded) ? '${width}px' : '${miniWidth}px';
-
   String get pageHeader => _activeItem?.label;
   String get pageIcon => _activeItem?.icon;
+
+  @ViewChild('listContent')
+  html.Element listContent;
+
+  @ViewChild('list')
+  html.Element list;
+
+  bool showScrollIndicator = false;
+
+  final ChangeDetectorRef _changeDetectorRef;
 
   bool animating = false;
 
@@ -116,6 +125,20 @@ class AppLayoutComponent implements OnDestroy {
 
   @Output('expandedChange')
   Stream<bool> get onExpandedChangeOutput => _onExpandedChangeController.stream;
+
+  @override
+  void ngAfterViewInit() {
+    Future.delayed(const Duration(milliseconds: 100)).then((_) {
+      showScrollIndicator = listContent.clientHeight > list.clientHeight;
+      list.onScroll.first.then((_) {
+        showScrollIndicator = false;
+      });
+    });
+  }
+
+  void scrollNavToBottom() {
+    list.scrollTo(0, list.clientHeight);
+  }
 }
 
 class FoSidebarCategory {

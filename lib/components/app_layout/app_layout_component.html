@@ -11,24 +11,25 @@
             <p *ngIf="expanded"
                class="fade-opacity"
                [style.opacity]="animating ? 0 : 1">{{header | capitalize}}</p>
-          </div>
-          <div id="sidebar-list">
-            <material-list *ngIf="expanded"
-                           class="fade-opacity"
-                           [style.opacity]="animating ? 0 : 1">
-              <div group
-                   *ngFor="let category of categories">
-                <div label>{{category.title | capitalize}}</div>
-                <material-list-item *ngFor="let item of category.items"
-                                    [class.active]="isActive(item)"
-                                    (click)="router.navigate(item.url)">
-                  <material-icon [icon]="item.icon"
-                                 baseline></material-icon>&nbsp;{{item.label | capitalize}}
-                </material-list-item>
-              </div>
-            </material-list>
-            <div *ngIf="!expanded"
-                 class="margin-top-medium fade-opacity"
+          </div>          
+          <div #list id="sidebar-list">
+            <div #listContent>
+              <material-list *ngIf="expanded"
+                             class="fade-opacity"
+                             [style.opacity]="animating ? 0 : 1">
+                <div group
+                     *ngFor="let category of categories">
+                  <div label>{{category.title | capitalize}}</div>
+                  <material-list-item *ngFor="let item of category.items"
+                                      [class.active]="isActive(item)"
+                                      (click)="router.navigate(item.url)">
+                    <material-icon [icon]="item.icon"
+                                   baseline></material-icon>&nbsp;{{item.label | capitalize}}
+                  </material-list-item>
+                </div>
+              </material-list>                    
+              <div id="collapsedList" *ngIf="!expanded"
+                 class="fade-opacity"
                  [style.opacity]="animating ? 0 : 1">
               <div *ngFor="let category of categories">
                 <div *ngFor="let item of category.items"
@@ -44,6 +45,10 @@
               </div>
             </div>
           </div>
+            </div>                        
+          <div *ngIf="showScrollIndicator == true" id="scrollIndicator" [class.expanded]="expanded" (click)="scrollNavToBottom()">
+              <material-icon icon="keyboard_arrow_down"></material-icon>              
+            </div>
           <div id="toggle"
                class="text-right"
                (click)="toggleExpanded()">
