@@ -1,7 +1,6 @@
-@import '../../mixins';
+@import "../../mixins";
 
 :host {
-
   .box-shadow {
     @include boxShadow();
   }
@@ -30,7 +29,7 @@
         td:last-child {
           padding: 0 2px;
         }
-        td {          
+        td {
           overflow-y: auto;
           overflow-x: auto;
           vertical-align: top;
@@ -93,7 +92,7 @@
             }
 
             #sidebar-list::-webkit-scrollbar {
-              width: 0 !important
+              width: 0 !important;
             }
 
             div.mini-item {
@@ -115,18 +114,18 @@
           div#scrollIndicator {
             cursor: pointer;
             text-align: right;
-            background-color: rgba(230,230,230,1);
+            background-color: rgba(230, 230, 230, 1);
             padding: 0.5em 0;
             color: black;
             position: absolute;
-            bottom: 43px;
-            width: 100%;     
+            bottom: 40px;
+            width: 100%;
             material-icon {
               margin-right: 0.5em;
-            }       
+            }
           }
           div#scrollIndicator.expanded {
-            background-color: rgba(0,0,0,0.1);
+            background-color: rgba(0, 0, 0, 0.1);
           }
 
           div#toggle {
@@ -187,7 +186,6 @@
 
           td {
             div#main-row {
-
               //padding-top: 0 !important;
               div#page-header {
                 display: none;
