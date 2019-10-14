@@ -24,6 +24,7 @@
       margin: 0;
       border-collapse: collapse;
       table-layout: fixed;
+      min-height: 100vh;
 
       tr {
         td:last-child {
