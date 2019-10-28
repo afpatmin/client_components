@@ -20,7 +20,9 @@
         </fo-text-input>
         <fo-text-input [disabled]="loading"
                        noFocusShadow
-                       type="password"
+                       [type]="inputType"
+                       [actionButtonIcon]="passwordButtonIcon"
+                       (actionButtonTrigger)="toggleInputType()"
                        [placeholder]="msgPassword"
                        [(ngModel)]="password"
                        (keyup)="onLoginKeyUp($event)">

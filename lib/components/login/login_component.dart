@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:html' as html;
-
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:fo_components/components/fo_button/fo_button_component.dart';
@@ -18,13 +17,25 @@ import 'package:intl/intl.dart';
       FoModalComponent,
       formDirectives,
       FoTextInputComponent,
-      NgClass,
-      NgIf,
+      coreDirectives
     ],
     pipes: [CapitalizePipe])
 class LoginComponent implements OnDestroy {
   String token = '';
   bool visible = true;
+  String inputType = 'password';
+  String passwordButtonIcon = 'visibility';
+
+  void toggleInputType() {
+    if (inputType == 'password') {
+      inputType = 'text';
+      passwordButtonIcon = 'visibility';
+    } else {
+      inputType = 'password';
+      passwordButtonIcon = 'visibility_off';
+    }
+    print(inputType);
+  }
 
   final StreamController<LoginEvent> _onLoginController = StreamController();
 
