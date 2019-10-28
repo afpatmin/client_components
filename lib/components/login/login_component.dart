@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:html' as html;
+
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:fo_components/components/fo_button/fo_button_component.dart';
@@ -25,17 +26,6 @@ class LoginComponent implements OnDestroy {
   bool visible = true;
   String inputType = 'password';
   String passwordButtonIcon = 'visibility';
-
-  void toggleInputType() {
-    if (inputType == 'password') {
-      inputType = 'text';
-      passwordButtonIcon = 'visibility_off';
-    } else {
-      inputType = 'password';
-      passwordButtonIcon = 'visibility';
-    }
-    print(inputType);
-  }
 
   final StreamController<LoginEvent> _onLoginController = StreamController();
 
@@ -80,6 +70,7 @@ class LoginComponent implements OnDestroy {
   bool loading = false;
 
   final String msgUsername = Intl.message('username', name: 'username');
+
   final String msgPassword = Intl.message('password', name: 'password');
   final String msgSend = Intl.message('send', name: 'send');
   final String msgSave = Intl.message('save', name: 'save');
@@ -109,7 +100,6 @@ class LoginComponent implements OnDestroy {
         } {
     setState('login');
   }
-
   @Output('login')
   Stream<LoginEvent> get onLoginOutput => _onLoginController.stream;
 
@@ -138,14 +128,16 @@ class LoginComponent implements OnDestroy {
       ..password = password);
   }
 
-  void onLoginKeyUp(html.KeyboardEvent e) {
-    if (username != null &&
-        username.isNotEmpty &&
-        password != null &&
-        password.isNotEmpty &&
-        (e.keyCode == html.KeyCode.ENTER ||
-            e.keyCode == html.KeyCode.MAC_ENTER)) {
-      onLogin();
+  void onLoginKeyDown(html.KeyboardEvent e) {
+    if (e.keyCode == html.KeyCode.ENTER ||
+        e.keyCode == html.KeyCode.MAC_ENTER) {
+      e.preventDefault();
+      if (username != null &&
+          username.isNotEmpty &&
+          password != null &&
+          password.isNotEmpty) {
+        onLogin();
+      }
     }
   }
 
@@ -172,6 +164,16 @@ class LoginComponent implements OnDestroy {
     state = newState;
     errorMessage = null;
     onStateChangeController.add(state);
+  }
+
+  void toggleInputType() {
+    if (inputType == 'password') {
+      inputType = 'text';
+      passwordButtonIcon = 'visibility_off';
+    } else {
+      inputType = 'password';
+      passwordButtonIcon = 'visibility';
+    }
   }
 }
 

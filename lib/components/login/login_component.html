@@ -16,7 +16,7 @@
                        noFocusShadow
                        [placeholder]="msgUsername"
                        [(ngModel)]="username"
-                       (keyup)="onLoginKeyUp($event)">
+                       (keydown)="onLoginKeyDown($event)">
         </fo-text-input>
         <fo-text-input [disabled]="loading"
                        noFocusShadow
@@ -25,7 +25,7 @@
                        (actionButtonTrigger)="toggleInputType()"
                        [placeholder]="msgPassword"
                        [(ngModel)]="password"
-                       (keyup)="onLoginKeyUp($event)">
+                       (keydown)="onLoginKeyDown($event)">
         </fo-text-input>
       </form>
       <p *ngIf="showForgotPassword"
