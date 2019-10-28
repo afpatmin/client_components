@@ -29,10 +29,10 @@ class LoginComponent implements OnDestroy {
   void toggleInputType() {
     if (inputType == 'password') {
       inputType = 'text';
-      passwordButtonIcon = 'visibility';
+      passwordButtonIcon = 'visibility_off';
     } else {
       inputType = 'password';
-      passwordButtonIcon = 'visibility_off';
+      passwordButtonIcon = 'visibility';
     }
     print(inputType);
   }
