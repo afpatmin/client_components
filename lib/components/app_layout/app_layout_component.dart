@@ -28,7 +28,8 @@ import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
     ],
     pipes: [CapitalizePipe])
 class AppLayoutComponent implements OnDestroy, AfterViewInit {
-  AppLayoutComponent(this.router, this._domSanitizationService, this._changeDetectorRef) {
+  AppLayoutComponent(
+      this.router, this._domSanitizationService, this._changeDetectorRef) {
     router.onRouteActivated.listen(_onRouteActivated);
   }
 
@@ -58,8 +59,10 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   void _onRouteActivated(RouterState state) {
     _activeItem = null;
 
-    final path = state.path.replaceAll('/', '').replaceAll('#', '');
-    if (path == null || path.isEmpty) return;
+    var path = state.path.replaceAll('/', '').replaceAll('#', '');
+    if (path == null || path.isEmpty) {
+      path = 'index.html';
+    }
 
     for (final category in categories) {
       _activeItem =
