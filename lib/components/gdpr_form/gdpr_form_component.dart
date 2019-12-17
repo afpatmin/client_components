@@ -42,26 +42,26 @@ class GdprFormComponent implements OnDestroy {
   final StreamController<GdprModel> _submitController = StreamController();
   final String msgGdprFormInfo = Intl.message(
       'This form is used for inquiries regarding your rights in accordance with Data Protection Regulation 2016/79.<br /><br />We save the details you provide in accordance with article 17.3.<br /><br />This information is sent to the support contact who registered your details and is logged by the service provider.',
-      name: 'gdpr_form_info',
+      name: 'msgGdprFormInfo',
       desc: 'Text displayed over the GDPR issue form');
-  final String msgReadMore = Intl.message('read more', name: 'read_more');
-  final String msgFirstname = Intl.message('firstname', name: 'firstname');
-  final String msgLastname = Intl.message('lastname', name: 'lastname');
-  final String msgPhone = Intl.message('phone', name: 'phone');
-  final String msgEmail = Intl.message('email', name: 'email');
-  final String msgSend = Intl.message('send', name: 'send');
+  final String msgReadMore = Intl.message('read more', name: 'msgReadMore');
+  final String msgFirstname = Intl.message('firstname', name: 'msgFirstname');
+  final String msgLastname = Intl.message('lastname', name: 'msgLastname');
+  final String msgPhone = Intl.message('phone', name: 'msgPhone');
+  final String msgEmail = Intl.message('email', name: 'msgEmail');
+  final String msgSend = Intl.message('send', name: 'msgSend');
   final String msgGdprFormCompleted = Intl.message(
       '<h1>Thank you!</h1><p>Your inquiry has been now been sent, and we will take necessary actions and reply to you as soon as we can.</p>',
-      name: 'gdpr_form_completed_message',
+      name: 'msgGdprFormCompleted',
       desc:
           'Displayed to the user after submitting the gdpr form, can be basic html');
-  final String msgIssue =
-      Intl.plural(1, one: 'issue', other: 'issues', args: [1], name: 'issue');
+  final String msgIssue = Intl.plural(1,
+      one: 'issue', other: 'issues', args: [1], name: 'msgIssue');
   final String msgComments = Intl.plural(2,
-      one: 'comment', args: [2], other: 'comments', name: 'comment');
+      one: 'comment', args: [2], other: 'comments', name: 'msgComments');
   final String msgGdprFormAccept = Intl.message(
       'I hereby consent that above details are stored while the case is processed',
-      name: 'gdpr_form_accept',
+      name: 'msgGdprFormAccept',
       desc:
           'Label next to checkbox that the user must check in order to submit an issue');
 
