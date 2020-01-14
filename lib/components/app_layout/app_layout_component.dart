@@ -59,14 +59,14 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   void _onRouteActivated(RouterState state) {
     _activeItem = null;
 
-    var path = state.path.replaceAll('/', '').replaceAll('#', '');
+    var path = state.path; //.path.replaceAll('/', '').replaceAll('#', '');
     if (path == null || path.isEmpty) {
       path = 'index.html';
     }
 
     for (final category in categories) {
-      _activeItem =
-          category.items.firstWhere((i) => i.url == path, orElse: () => null);
+      _activeItem = category.items
+          .firstWhere((i) => path.contains(i.url), orElse: () => null);
 
       if (_activeItem == null) {
         instructionsUrl = null;
