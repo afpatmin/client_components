@@ -11,8 +11,9 @@
             <p *ngIf="expanded"
                class="fade-opacity"
                [style.opacity]="animating ? 0 : 1">{{header | capitalize}}</p>
-          </div>          
-          <div #list id="sidebar-list">
+          </div>
+          <div #list
+               id="sidebar-list">
             <div #listContent>
               <material-list *ngIf="expanded"
                              class="fade-opacity"
@@ -27,28 +28,32 @@
                                    baseline></material-icon>&nbsp;{{item.label | capitalize}}
                   </material-list-item>
                 </div>
-              </material-list>                    
-              <div id="collapsedList" *ngIf="!expanded"
-                 class="fade-opacity"
-                 [style.opacity]="animating ? 0 : 1">
-              <div *ngFor="let category of categories">
-                <div *ngFor="let item of category.items"
-                     class="clickable text-center padding-top-small padding-bottom-small mini-item"
-                     [class.active]="isActive(item)"
-                     [materialTooltip]="item.label"
-                     (click)="router.navigate(item.url)">
-                  <material-icon [icon]="item.icon"
-                                 size="x-large"
-                                 baseline></material-icon>
+              </material-list>
+              <div id="collapsedList"
+                   *ngIf="!expanded"
+                   class="fade-opacity"
+                   [style.opacity]="animating ? 0 : 1">
+                <div *ngFor="let category of categories">
+                  <div *ngFor="let item of category.items"
+                       class="clickable text-center padding-top-small padding-bottom-small mini-item"
+                       [class.active]="isActive(item)"
+                       [materialTooltip]="item.label"
+                       (click)="router.navigate(item.url)">
+                    <material-icon [icon]="item.icon"
+                                   size="x-large"
+                                   baseline></material-icon>
+                  </div>
+                  <hr />
                 </div>
-                <hr />
               </div>
             </div>
           </div>
-            </div>                        
-          <div *ngIf="showScrollIndicator == true" id="scrollIndicator" [class.expanded]="expanded" (click)="scrollNavToBottom()">
-              <material-icon icon="keyboard_arrow_down"></material-icon>              
-            </div>
+          <div *ngIf="showScrollIndicator == true"
+               id="scrollIndicator"
+               [class.expanded]="expanded"
+               (click)="scrollNavToBottom()">
+            <material-icon icon="keyboard_arrow_down"></material-icon>
+          </div>
           <div id="toggle"
                class="text-right"
                (click)="toggleExpanded()">
@@ -69,7 +74,7 @@
                 <h3 class="margin-top-none margin-bottom-x-small">
                   <material-icon [style.color]="backgroundColor"
                                  baseline
-                                 [icon]="pageIcon"></material-icon> {{pageHeader | capitalize}}
+                                 [icon]="pageIcon"></material-icon><span>{{pageHeader | capitalize}}</span>
                 </h3>
               </div>
               <div class="s2 col align-bottom text-right">
