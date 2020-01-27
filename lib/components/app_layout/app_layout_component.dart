@@ -109,7 +109,7 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   String header = 'Menu';
 
   @Input()
-  String paddingTop = '100px';
+  String paddingTop = '70px';
 
   @Input()
   bool expanded = false;
