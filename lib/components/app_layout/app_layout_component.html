@@ -7,7 +7,8 @@
              class="box-shadow"
              [style.width]="sidebarWidth">
           <div id="sidebar-header"
-               [style.background-color]="backgroundColor">
+               [style.background-color]="backgroundColor"
+               [style.padding-top]="paddingTop">
             <p *ngIf="expanded"
                class="fade-opacity"
                [style.opacity]="animating ? 0 : 1">{{header | capitalize}}</p>
