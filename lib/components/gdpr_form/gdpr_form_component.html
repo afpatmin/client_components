@@ -4,10 +4,10 @@
   <div *ngIf="open">
     <div *ngIf="!sent">
       <div class="row collapse">
-        <div class="col">
+        <div class="col overflow">
           <form [ngFormModel]="form">
             <div class="row">
-              <div class="col">
+              <div class="col overflow">
                 <p class="margin-top-none margin-bottom-small text-small"
                    [innerHtml]="msgGdprFormInfo"></p>
                 <p class="margin-top-small text-small"
@@ -18,7 +18,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="m6 col">
+              <div class="m6 col overflow">
                 <fo-dropdown-select label="{{msgIssue}}*"
                                     [(selectedId)]="model.selected_issue"
                                     [options]="options">
@@ -26,13 +26,13 @@
               </div>
             </div>
             <div class="row">
-              <div class="m6 col">
+              <div class="m6 col overflow">
                 <fo-text-input label="{{msgFirstname}}*"
                                ngControl="firstname"
                                [(ngModel)]="model.firstname">
                 </fo-text-input>
               </div>
-              <div class="m6 col">
+              <div class="m6 col overflow">
                 <fo-text-input label="{{msgLastname}}*"
                                ngControl="lastname"
                                [(ngModel)]="model.lastname">
@@ -40,13 +40,13 @@
               </div>
             </div>
             <div class="row">
-              <div class="m6 col">
+              <div class="m6 col overflow">
                 <fo-text-input label="{{msgPhone}}*"
                                ngControl="phone"
                                [(ngModel)]="model.phone">
                 </fo-text-input>
               </div>
-              <div class="m6 col">
+              <div class="m6 col overflow">
                 <fo-text-input label="{{msgEmail}}*"
                                ngControl="email"
                                [(ngModel)]="model.email">
@@ -54,7 +54,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col">
+              <div class="col overflow">
                 <fo-textarea-input [label]="msgComments"
                                    ngControl="comments"
                                    [(ngModel)]="model.comments"
@@ -64,7 +64,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col">
+              <div class="col overflow">
                 <material-checkbox [label]="msgGdprFormAccept"
                                    [(checked)]="termsChecked">
                 </material-checkbox>
@@ -75,7 +75,7 @@
       </div>
       <div class="row"
            footer>
-        <div class="col text-right">
+        <div class="col text-right overflow">
           <fo-button [label]="msgSend | capitalize"
                      (trigger)="submit()"
                      [disabled]="!form.valid || !termsChecked"></fo-button>

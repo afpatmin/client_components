@@ -7,42 +7,53 @@
              class="box-shadow"
              [style.width]="sidebarWidth">
           <div id="sidebar-header"
-               [style.background-color]="backgroundColor">
+               [style.background-color]="backgroundColor"
+               [style.padding-top]="paddingTop">
             <p *ngIf="expanded"
                class="fade-opacity"
                [style.opacity]="animating ? 0 : 1">{{header | capitalize}}</p>
           </div>
-          <div id="sidebar-list">
-            <material-list *ngIf="expanded"
-                           class="fade-opacity"
-                           [style.opacity]="animating ? 0 : 1">
-              <div group
-                   *ngFor="let category of categories">
-                <div label>{{category.title | capitalize}}</div>
-                <material-list-item *ngFor="let item of category.items"
-                                    [class.active]="isActive(item)"
-                                    (click)="router.navigate(item.url)">
-                  <material-icon [icon]="item.icon"
-                                 baseline></material-icon>&nbsp;{{item.label | capitalize}}
-                </material-list-item>
-              </div>
-            </material-list>
-            <div *ngIf="!expanded"
-                 class="margin-top-medium fade-opacity"
-                 [style.opacity]="animating ? 0 : 1">
-              <div *ngFor="let category of categories">
-                <div *ngFor="let item of category.items"
-                     class="clickable text-center padding-top-small padding-bottom-small mini-item"
-                     [class.active]="isActive(item)"
-                     [materialTooltip]="item.label"
-                     (click)="router.navigate(item.url)">
-                  <material-icon [icon]="item.icon"
-                                 size="x-large"
-                                 baseline></material-icon>
+          <div #list
+               id="sidebar-list">
+            <div #listContent>
+              <material-list *ngIf="expanded"
+                             class="fade-opacity"
+                             [style.opacity]="animating ? 0 : 1">
+                <div group
+                     *ngFor="let category of categories">
+                  <div label>{{category.title | capitalize}}</div>
+                  <material-list-item *ngFor="let item of category.items"
+                                      [class.active]="isActive(item)"
+                                      (click)="router.navigate(item.url)">
+                    <material-icon [icon]="item.icon"
+                                   baseline></material-icon>&nbsp;{{item.label | capitalize}}
+                  </material-list-item>
                 </div>
-                <hr />
+              </material-list>
+              <div id="collapsedList"
+                   *ngIf="!expanded"
+                   class="fade-opacity"
+                   [style.opacity]="animating ? 0 : 1">
+                <div *ngFor="let category of categories">
+                  <div *ngFor="let item of category.items"
+                       class="clickable text-center padding-top-small padding-bottom-small mini-item"
+                       [class.active]="isActive(item)"
+                       [materialTooltip]="item.label"
+                       (click)="router.navigate(item.url)">
+                    <material-icon [icon]="item.icon"
+                                   size="x-large"
+                                   baseline></material-icon>
+                  </div>
+                  <hr />
+                </div>
               </div>
             </div>
+          </div>
+          <div *ngIf="showScrollIndicator == true"
+               id="scrollIndicator"
+               [class.expanded]="expanded"
+               (click)="scrollNavToBottom()">
+            <material-icon icon="keyboard_arrow_down"></material-icon>
           </div>
           <div id="toggle"
                class="text-right"
@@ -64,7 +75,7 @@
                 <h3 class="margin-top-none margin-bottom-x-small">
                   <material-icon [style.color]="backgroundColor"
                                  baseline
-                                 [icon]="pageIcon"></material-icon> {{pageHeader | capitalize}}
+                                 [icon]="pageIcon"></material-icon><span>{{pageHeader | capitalize}}</span>
                 </h3>
               </div>
               <div class="s2 col align-bottom text-right">

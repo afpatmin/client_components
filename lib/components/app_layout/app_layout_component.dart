@@ -27,8 +27,9 @@ import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
       routerDirectives,
     ],
     pipes: [CapitalizePipe])
-class AppLayoutComponent implements OnDestroy {
-  AppLayoutComponent(this.router, this._domSanitizationService) {
+class AppLayoutComponent implements OnDestroy, AfterViewInit {
+  AppLayoutComponent(
+      this.router, this._domSanitizationService, this._changeDetectorRef) {
     router.onRouteActivated.listen(_onRouteActivated);
   }
 
@@ -58,12 +59,14 @@ class AppLayoutComponent implements OnDestroy {
   void _onRouteActivated(RouterState state) {
     _activeItem = null;
 
-    final path = state.path.replaceAll('/', '').replaceAll('#', '');
-    if (path == null || path.isEmpty) return;
+    var path = state.path; //.path.replaceAll('/', '').replaceAll('#', '');
+    if (path == null || path.isEmpty) {
+      path = 'index.html';
+    }
 
     for (final category in categories) {
-      _activeItem =
-          category.items.firstWhere((i) => i.url == path, orElse: () => null);
+      _activeItem = category.items
+          .firstWhere((i) => path.contains(i.url), orElse: () => null);
 
       if (_activeItem == null) {
         instructionsUrl = null;
@@ -78,9 +81,18 @@ class AppLayoutComponent implements OnDestroy {
   }
 
   String get sidebarWidth => (expanded) ? '${width}px' : '${miniWidth}px';
-
   String get pageHeader => _activeItem?.label;
   String get pageIcon => _activeItem?.icon;
+
+  @ViewChild('listContent')
+  html.Element listContent;
+
+  @ViewChild('list')
+  html.Element list;
+
+  bool showScrollIndicator = false;
+
+  final ChangeDetectorRef _changeDetectorRef;
 
   bool animating = false;
 
@@ -97,7 +109,7 @@ class AppLayoutComponent implements OnDestroy {
   String header = 'Menu';
 
   @Input()
-  String paddingTop = '100px';
+  String paddingTop = '70px';
 
   @Input()
   bool expanded = false;
@@ -116,6 +128,20 @@ class AppLayoutComponent implements OnDestroy {
 
   @Output('expandedChange')
   Stream<bool> get onExpandedChangeOutput => _onExpandedChangeController.stream;
+
+  @override
+  void ngAfterViewInit() {
+    Future.delayed(const Duration(milliseconds: 100)).then((_) {
+      showScrollIndicator = listContent.clientHeight > list.clientHeight;
+      list.onScroll.first.then((_) {
+        showScrollIndicator = false;
+      });
+    });
+  }
+
+  void scrollNavToBottom() {
+    list.scrollTo(0, list.clientHeight);
+  }
 }
 
 class FoSidebarCategory {

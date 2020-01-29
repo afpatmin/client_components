@@ -1,13 +1,19 @@
+@import "package:fo_components/components/fo_button/mixins";
+@import "package:fo_components/components/fo_modal/mixins";
+@import "package:fo_components/components/fo_text_input/mixins";
+
 :host {
+  @include fo-button-vertical-padding(2px);
+  @include fo-modal-width(300px);
+  @include fo-text-input-vertical-padding(5px, 5px);
   div#loginContent {
-    width: 250px;
     fo-text-input {
       margin-top: 5px;
     }
     img {
       width: 100%;
       display: block;
-      margin: 0;
+      margin: 0 0 1em 0;
     }
 
     a {
@@ -30,7 +36,7 @@
 
     p#forgotPasswordDescription,
     p#resetPasswordDescription {
-      margin-top: 0.25em;
+      margin: 0.25em 0;
       font-size: 0.9em;
     }
 
