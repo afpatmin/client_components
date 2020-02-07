@@ -65,27 +65,14 @@
       </td>
       <!-- Page Content -->
       <td>
-        <div class="row collapse"
-             id="main-row"
+        <div id="main-row"
              [style.padding-top]="paddingTop">
-          <div class="col">
-            <div class="row"
-                 id="page-header">
-              <div class="s10 col">
-                <h3 class="margin-top-none margin-bottom-x-small">
-                  <material-icon [style.color]="backgroundColor"
-                                 baseline
-                                 [icon]="pageIcon"></material-icon><span>{{pageHeader | capitalize}}</span>
-                </h3>
-              </div>
-              <div class="s2 col align-bottom text-right">
-                <material-button *ngIf="instructionsUrl != null"
-                                 clear-size
-                                 raised
-                                 class="margin-bottom-small"
-                                 (trigger)="instructionsModalVisible = true">?</material-button>
-              </div>
-            </div>
+          <div id="page-header">
+            <h3 class="margin-top-none margin-bottom-none">
+              <material-icon [style.color]="backgroundColor"
+                             baseline
+                             [icon]="pageIcon"></material-icon><span>{{pageHeader | capitalize}}</span>
+            </h3>
             <div id="page-content">
               <ng-content></ng-content>
             </div>
