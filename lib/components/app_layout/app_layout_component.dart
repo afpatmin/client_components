@@ -28,8 +28,7 @@ import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
     ],
     pipes: [CapitalizePipe])
 class AppLayoutComponent implements OnDestroy, AfterViewInit {
-  AppLayoutComponent(
-      this.router, this._domSanitizationService, this._changeDetectorRef) {
+  AppLayoutComponent(this.router, this._domSanitizationService) {
     router.onRouteActivated.listen(_onRouteActivated);
   }
 
@@ -92,8 +91,6 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
 
   bool showScrollIndicator = false;
 
-  final ChangeDetectorRef _changeDetectorRef;
-
   bool animating = false;
 
   final security.DomSanitizationService _domSanitizationService;
@@ -109,7 +106,7 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   String header = 'Menu';
 
   @Input()
-  String paddingTop = '70px';
+  String paddingTop = '85px';
 
   @Input()
   bool expanded = false;

@@ -150,27 +150,19 @@
           div#main-row {
             min-width: 315px;
 
-            div.col {
+            #page-header {
+              material-icon {
+                ::ng-deep i {
+                  font-size: 3rem;
+                }
+              }
+              span {
+                margin-left: 0.5rem;
+              }
+            }
+
+            div#page-content {
               overflow: visible;
-
-              #page-header {
-                margin-bottom: 1rem;
-
-                material-icon {
-                  ::ng-deep i {
-                    font-size: 3rem;
-                  }
-                }
-                span {
-                  margin-left: 0.5rem;
-                }
-              }
-
-              div#page-content {
-                margin-bottom: 2rem;
-                overflow-y: hidden;
-                overflow-x: hidden;
-              }
             }
           }
         }
