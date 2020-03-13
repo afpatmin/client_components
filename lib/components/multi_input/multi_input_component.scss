@@ -1,13 +1,11 @@
-@import 'package:grid_css/constants';
-
 :host {
   div#output {
     margin-top: $small;
     padding: $medium;
     border: 1px dashed #ccc;
     fo-button {
-      margin-top: $x-small;
-      margin-right: $x-small;
+      margin-top: 0.25rem;
+      margin-right: 0.25rem;
     }
   }
 }
