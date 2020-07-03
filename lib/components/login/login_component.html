@@ -4,14 +4,13 @@
           [header]="label"
           [error]="errorMessage">
   <div id="loginContent">
-
     <div header>
       <img *ngIf="titleImageUrl != null"
            [src]="titleImageUrl"
            alt="logo" />
     </div>
     <ng-container *ngIf="state == 'login'">
-      <form>
+      <div>
         <fo-text-input [disabled]="loading"
                        noFocusShadow
                        [placeholder]="msgUsername"
@@ -27,7 +26,7 @@
                        [(ngModel)]="password"
                        (keydown)="onLoginKeyDown($event)">
         </fo-text-input>
-      </form>
+      </div>
       <p *ngIf="showForgotPassword"
          id="forgotPassword"
          (click)="setState('forgot_password')">{{msgForgotPassword}}?</p>

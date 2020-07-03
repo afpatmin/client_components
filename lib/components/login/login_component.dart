@@ -54,8 +54,7 @@ class LoginComponent implements OnDestroy {
   @Input()
   String label;
 
-  @Input()
-  String state;
+  String state = 'login';
 
   @Input()
   String titleImageUrl;
@@ -98,7 +97,7 @@ class LoginComponent implements OnDestroy {
           'reset_password':
               Intl.message('reset password', name: 'reset_password'),
         } {
-    setState('login');
+    //setState('login');
   }
   @Output('login')
   Stream<LoginEvent> get onLoginOutput => _onLoginController.stream;
