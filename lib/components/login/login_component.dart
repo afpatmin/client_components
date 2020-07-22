@@ -142,6 +142,7 @@ class LoginComponent implements OnDestroy {
 
   void onRecoverPassword() {
     _onRecoverPasswordController.add(username);
+    setState('login');
   }
 
   void onRecoverPasswordKeyUp(html.KeyboardEvent e) {
