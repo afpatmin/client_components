@@ -7,8 +7,8 @@ import 'package:fo_components/components/fo_button/fo_button_component.dart';
 import 'package:fo_components/components/fo_dropdown_list/fo_dropdown_option.dart';
 import 'package:fo_components/components/fo_dropdown_select/fo_dropdown_select_component.dart';
 import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
-import 'package:fo_components/components/fo_text_input/fo_textarea_input_component.dart';
 import 'package:fo_components/components/fo_text_input/fo_text_input_component.dart';
+import 'package:fo_components/components/fo_text_input/fo_textarea_input_component.dart';
 import 'package:fo_components/pipes/capitalize_pipe.dart';
 import 'package:fo_components/validators/fo_validators.dart';
 import 'package:intl/intl.dart';
@@ -37,31 +37,31 @@ class GdprFormComponent implements OnDestroy {
   bool termsChecked = false;
   bool sent = false;
   final GdprModel model = GdprModel();
-  final Map<String, List<FoDropdownOption>> options;
+  Map<String, List<FoDropdownOption>> options;
   final StreamController<bool> openController = StreamController();
   final StreamController<GdprModel> _submitController = StreamController();
   final String msgGdprFormInfo = Intl.message(
       'This form is used for inquiries regarding your rights in accordance with Data Protection Regulation 2016/79.<br /><br />We save the details you provide in accordance with article 17.3.<br /><br />This information is sent to the support contact who registered your details and is logged by the service provider.',
-      name: 'gdpr_form_info',
+      name: 'msgGdprFormInfo',
       desc: 'Text displayed over the GDPR issue form');
-  final String msgReadMore = Intl.message('read more', name: 'read_more');
-  final String msgFirstname = Intl.message('firstname', name: 'firstname');
-  final String msgLastname = Intl.message('lastname', name: 'lastname');
-  final String msgPhone = Intl.message('phone', name: 'phone');
-  final String msgEmail = Intl.message('email', name: 'email');
-  final String msgSend = Intl.message('send', name: 'send');
+  final String msgReadMore = Intl.message('read more', name: 'msgReadMore');
+  final String msgFirstname = Intl.message('firstname', name: 'msgFirstname');
+  final String msgLastname = Intl.message('lastname', name: 'msgLastname');
+  final String msgPhone = Intl.message('phone', name: 'msgPhone');
+  final String msgEmail = Intl.message('email', name: 'msgEmail');
+  final String msgSend = Intl.message('send', name: 'msgSend');
   final String msgGdprFormCompleted = Intl.message(
       '<h1>Thank you!</h1><p>Your inquiry has been now been sent, and we will take necessary actions and reply to you as soon as we can.</p>',
-      name: 'gdpr_form_completed_message',
+      name: 'msgGdprFormCompleted',
       desc:
           'Displayed to the user after submitting the gdpr form, can be basic html');
-  final String msgIssue =
-      Intl.plural(1, one: 'issue', other: 'issues', args: [1], name: 'issue');
+  final String msgIssue = Intl.plural(1,
+      one: 'issue', other: 'issues', args: [1], name: 'msgIssue');
   final String msgComments = Intl.plural(2,
-      one: 'comment', args: [2], other: 'comments', name: 'comment');
+      one: 'comment', args: [2], other: 'comments', name: 'msgComments');
   final String msgGdprFormAccept = Intl.message(
       'I hereby consent that above details are stored while the case is processed',
-      name: 'gdpr_form_accept',
+      name: 'msgGdprFormAccept',
       desc:
           'Label next to checkbox that the user must check in order to submit an issue');
 
@@ -70,6 +70,28 @@ class GdprFormComponent implements OnDestroy {
 
   @Input()
   String readMoreLink;
+
+  final msgFetchMyInfo = Intl.message('I want to know my personal details',
+      name: 'msgFetchMyInfo');
+
+  final msgFetchMyInfoPortable = Intl.message(
+      'I want to access my personal details in a portable data',
+      name: 'msgFetchMyInfoPortable');
+
+  final msgChangeMyInfo = Intl.message('I wish to change/update my information',
+      name: 'msgChangeMyInfo');
+
+  final msgLimitMyDataProcessing = Intl.message(
+      'I wish to limit how my data is being processed',
+      name: 'msgLimitMyDataProcessing');
+
+  final msgEraseMe =
+      Intl.message('I wish to erase all my data', name: 'msgEraseMe');
+
+  final msgOpposeMyDataProcessing = Intl.message(
+      'I wish to oppose how my data is being processed',
+      name: 'msgOpposeMyDataProcessing');
+
   GdprFormComponent()
       : form = ControlGroup({
           'firstname': Control()
@@ -92,38 +114,30 @@ class GdprFormComponent implements OnDestroy {
             ]),
           'comments': Control()
             ..validator = Validators.compose([Validators.maxLength(1000)])
-        }),
-        options = {
-          '': [
-            FoDropdownOption()
-              ..id = 'gdpr_fetch_my_info'
-              ..label = Intl.message('I want to know my personal details',
-                  name: 'gdpr_fetch_my_info'),
-            FoDropdownOption()
-              ..id = 'gdpr_fetch_my_info_portable'
-              ..label = Intl.message(
-                  'I want to access my personal details in a portable data',
-                  name: 'gdpr_fetch_my_info_portable'),
-            FoDropdownOption()
-              ..id = 'gdpr_change_my_info'
-              ..label = Intl.message('I wish to change/update my information',
-                  name: 'gdpr_change_my_info'),
-            FoDropdownOption()
-              ..id = 'gdpr_limit_my_data_processing'
-              ..label = Intl.message(
-                  'I wish to limit how my data is being processed',
-                  name: 'gdpr_limit_my_data_processing'),
-            FoDropdownOption()
-              ..id = 'gdpr_oppose_my_data_processing'
-              ..label = Intl.message(
-                  'I wish to oppose how my data is being processed',
-                  name: 'gdpr_oppose_my_data_processing'),
-            FoDropdownOption()
-              ..id = 'gdpr_erase_me'
-              ..label = Intl.message('I wish to erase all my data',
-                  name: 'gdpr_erase_me')
-          ]
-        };
+        }) {
+    options = {
+      '': [
+        FoDropdownOption()
+          ..id = 'gdpr_fetch_my_info'
+          ..label = msgFetchMyInfo,
+        FoDropdownOption()
+          ..id = 'gdpr_fetch_my_info_portable'
+          ..label = msgFetchMyInfoPortable,
+        FoDropdownOption()
+          ..id = 'gdpr_change_my_info'
+          ..label = msgChangeMyInfo,
+        FoDropdownOption()
+          ..id = 'gdpr_limit_my_data_processing'
+          ..label = msgLimitMyDataProcessing,
+        FoDropdownOption()
+          ..id = 'gdpr_oppose_my_data_processing'
+          ..label = msgOpposeMyDataProcessing,
+        FoDropdownOption()
+          ..id = 'gdpr_erase_me'
+          ..label = msgEraseMe
+      ]
+    };
+  }
 
   @Output('submit')
   Stream<GdprModel> get onSubmit => _submitController.stream;
