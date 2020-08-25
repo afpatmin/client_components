@@ -32,7 +32,7 @@ import 'package:intl/intl.dart';
     pipes: [
       CapitalizePipe
     ])
-class GdprFormComponent implements OnInit, OnDestroy {
+class GdprFormComponent implements OnDestroy {
   final ControlGroup form;
   bool termsChecked = false;
   bool sent = false;
@@ -41,7 +41,35 @@ class GdprFormComponent implements OnInit, OnDestroy {
   final StreamController<bool> openController = StreamController();
   final StreamController<GdprModel> _submitController = StreamController();
   @Input()
-  bool open = false;
+  set open(bool v) {
+    options = {
+      '': [
+        FoDropdownOption()
+          ..id = 'gdpr_fetch_my_info'
+          ..label = msgFetchMyInfo,
+        FoDropdownOption()
+          ..id = 'gdpr_fetch_my_info_portable'
+          ..label = msgFetchMyInfoPortable,
+        FoDropdownOption()
+          ..id = 'gdpr_change_my_info'
+          ..label = msgChangeMyInfo,
+        FoDropdownOption()
+          ..id = 'gdpr_limit_my_data_processing'
+          ..label = msgLimitMyDataProcessing,
+        FoDropdownOption()
+          ..id = 'gdpr_oppose_my_data_processing'
+          ..label = msgOpposeMyDataProcessing,
+        FoDropdownOption()
+          ..id = 'gdpr_erase_me'
+          ..label = msgEraseMe
+      ]
+    };
+    _open = v;
+  }
+
+  bool get open => _open;
+
+  bool _open = false;
   @Input()
   String readMoreLink;
   GdprFormComponent()
@@ -131,32 +159,6 @@ class GdprFormComponent implements OnInit, OnDestroy {
   void submit() {
     _submitController.add(model);
     sent = true;
-  }
-
-  @override
-  void ngOnInit() {
-    options = {
-      '': [
-        FoDropdownOption()
-          ..id = 'gdpr_fetch_my_info'
-          ..label = msgFetchMyInfo,
-        FoDropdownOption()
-          ..id = 'gdpr_fetch_my_info_portable'
-          ..label = msgFetchMyInfoPortable,
-        FoDropdownOption()
-          ..id = 'gdpr_change_my_info'
-          ..label = msgChangeMyInfo,
-        FoDropdownOption()
-          ..id = 'gdpr_limit_my_data_processing'
-          ..label = msgLimitMyDataProcessing,
-        FoDropdownOption()
-          ..id = 'gdpr_oppose_my_data_processing'
-          ..label = msgOpposeMyDataProcessing,
-        FoDropdownOption()
-          ..id = 'gdpr_erase_me'
-          ..label = msgEraseMe
-      ]
-    };
   }
 }
 
