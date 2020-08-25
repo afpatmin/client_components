@@ -1,4 +1,5 @@
 <fo-text-input [label]="label"
+               noFocusShadow
                [disabled]="disabled"
                [(ngModel)]="model"
                (change)="onChange($event)"
@@ -8,10 +9,10 @@
 <div id="output"
      *ngIf="value?.isEmpty == false">
   <fo-button *ngFor="let element of value"
-             dense
-             clearSize
              [disabled]="disabled"
              [label]="element"
+             trailingIcon="delete"
+             [materialIcon]="false"
              (trigger)="onRemove(element)">
   </fo-button>
 </div>

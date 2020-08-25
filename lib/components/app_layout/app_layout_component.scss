@@ -1,7 +1,6 @@
-@import '../../mixins';
+@import "../../mixins";
 
 :host {
-
   .box-shadow {
     @include boxShadow();
   }
@@ -25,12 +24,13 @@
       margin: 0;
       border-collapse: collapse;
       table-layout: fixed;
+      min-height: 100vh;
 
       tr {
         td:last-child {
           padding: 0 2px;
         }
-        td {          
+        td {
           overflow-y: auto;
           overflow-x: auto;
           vertical-align: top;
@@ -58,10 +58,10 @@
 
             div#sidebar-header {
               flex: none;
-              height: 7.5rem;
 
               p {
-                margin: 5.5rem 1rem 0 1rem;
+                margin: 1rem;
+                font-size: 20px;
                 color: white;
                 text-transform: uppercase;
                 display: inline-flex;
@@ -93,7 +93,7 @@
             }
 
             #sidebar-list::-webkit-scrollbar {
-              width: 0 !important
+              width: 0 !important;
             }
 
             div.mini-item {
@@ -115,18 +115,18 @@
           div#scrollIndicator {
             cursor: pointer;
             text-align: right;
-            background-color: rgba(230,230,230,1);
+            background-color: rgba(230, 230, 230, 1);
             padding: 0.5em 0;
             color: black;
             position: absolute;
-            bottom: 43px;
-            width: 100%;     
+            bottom: 40px;
+            width: 100%;
             material-icon {
               margin-right: 0.5em;
-            }       
+            }
           }
           div#scrollIndicator.expanded {
-            background-color: rgba(0,0,0,0.1);
+            background-color: rgba(0, 0, 0, 0.1);
           }
 
           div#toggle {
@@ -150,23 +150,19 @@
           div#main-row {
             min-width: 315px;
 
-            div.col {
-              overflow: visible;
-
-              #page-header {
-                margin-bottom: 1rem;
-                border-bottom: 2px solid #555;
-
-                material-icon {
-                  ::ng-deep i {
-                    font-size: 3rem;
-                  }
+            #page-header {
+              material-icon {
+                ::ng-deep i {
+                  font-size: 3rem;
                 }
               }
-
-              div#page-content {
-                margin-bottom: 2rem;
+              span {
+                margin-left: 0.5rem;
               }
+            }
+
+            div#page-content {
+              overflow: visible;
             }
           }
         }
@@ -187,7 +183,6 @@
 
           td {
             div#main-row {
-
               //padding-top: 0 !important;
               div#page-header {
                 display: none;

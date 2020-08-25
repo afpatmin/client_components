@@ -40,58 +40,10 @@ class GdprFormComponent implements OnDestroy {
   Map<String, List<FoDropdownOption>> options;
   final StreamController<bool> openController = StreamController();
   final StreamController<GdprModel> _submitController = StreamController();
-  final String msgGdprFormInfo = Intl.message(
-      'This form is used for inquiries regarding your rights in accordance with Data Protection Regulation 2016/79.<br /><br />We save the details you provide in accordance with article 17.3.<br /><br />This information is sent to the support contact who registered your details and is logged by the service provider.',
-      name: 'msgGdprFormInfo',
-      desc: 'Text displayed over the GDPR issue form');
-  final String msgReadMore = Intl.message('read more', name: 'msgReadMore');
-  final String msgFirstname = Intl.message('firstname', name: 'msgFirstname');
-  final String msgLastname = Intl.message('lastname', name: 'msgLastname');
-  final String msgPhone = Intl.message('phone', name: 'msgPhone');
-  final String msgEmail = Intl.message('email', name: 'msgEmail');
-  final String msgSend = Intl.message('send', name: 'msgSend');
-  final String msgGdprFormCompleted = Intl.message(
-      '<h1>Thank you!</h1><p>Your inquiry has been now been sent, and we will take necessary actions and reply to you as soon as we can.</p>',
-      name: 'msgGdprFormCompleted',
-      desc:
-          'Displayed to the user after submitting the gdpr form, can be basic html');
-  final String msgIssue = Intl.plural(1,
-      one: 'issue', other: 'issues', args: [1], name: 'msgIssue');
-  final String msgComments = Intl.plural(2,
-      one: 'comment', args: [2], other: 'comments', name: 'msgComments');
-  final String msgGdprFormAccept = Intl.message(
-      'I hereby consent that above details are stored while the case is processed',
-      name: 'msgGdprFormAccept',
-      desc:
-          'Label next to checkbox that the user must check in order to submit an issue');
-
   @Input()
   bool open = false;
-
   @Input()
   String readMoreLink;
-
-  final msgFetchMyInfo = Intl.message('I want to know my personal details',
-      name: 'msgFetchMyInfo');
-
-  final msgFetchMyInfoPortable = Intl.message(
-      'I want to access my personal details in a portable data',
-      name: 'msgFetchMyInfoPortable');
-
-  final msgChangeMyInfo = Intl.message('I wish to change/update my information',
-      name: 'msgChangeMyInfo');
-
-  final msgLimitMyDataProcessing = Intl.message(
-      'I wish to limit how my data is being processed',
-      name: 'msgLimitMyDataProcessing');
-
-  final msgEraseMe =
-      Intl.message('I wish to erase all my data', name: 'msgEraseMe');
-
-  final msgOpposeMyDataProcessing = Intl.message(
-      'I wish to oppose how my data is being processed',
-      name: 'msgOpposeMyDataProcessing');
-
   GdprFormComponent()
       : form = ControlGroup({
           'firstname': Control()
@@ -138,6 +90,54 @@ class GdprFormComponent implements OnDestroy {
       ]
     };
   }
+  String get msgChangeMyInfo =>
+      Intl.message('I wish to change/update my information',
+          name: 'msgChangeMyInfo');
+  String get msgComments => Intl.message('comments', name: 'msgComments');
+  String get msgEmail => Intl.message('email', name: 'msgEmail');
+  String get msgEraseMe =>
+      Intl.message('I wish to erase all my data', name: 'msgEraseMe');
+  String get msgFetchMyInfo =>
+      Intl.message('I want to know my personal details',
+          name: 'msgFetchMyInfo');
+  String get msgFetchMyInfoPortable =>
+      Intl.message('I want to access my personal details in a portable data',
+          name: 'msgFetchMyInfoPortable');
+  String get msgFirstname => Intl.message('firstname', name: 'msgFirstname');
+  String get msgGdprFormAccept => Intl.message(
+      'I hereby consent that above details are stored while the case is processed',
+      name: 'msgGdprFormAccept',
+      desc:
+          'Label next to checkbox that the user must check in order to submit an issue');
+
+  String get msgGdprFormCompleted => Intl.message(
+      '<h1>Thank you!</h1><p>Your inquiry has been now been sent, and we will take necessary actions and reply to you as soon as we can.</p>',
+      name: 'msgGdprFormCompleted',
+      desc:
+          'Displayed to the user after submitting the gdpr form, can be basic html');
+
+  String get msgGdprFormInfo => Intl.message(
+      'This form is used for inquiries regarding your rights in accordance with Data Protection Regulation 2016/79.<br /><br />We save the details you provide in accordance with article 17.3.<br /><br />This information is sent to the support contact who registered your details and is logged by the service provider.',
+      name: 'msgGdprFormInfo',
+      desc: 'Text displayed over the GDPR issue form');
+
+  String get msgIssue => Intl.message('issue', name: 'msgIssue');
+
+  String get msgLastname => Intl.message('lastname', name: 'msgLastname');
+
+  String get msgLimitMyDataProcessing =>
+      Intl.message('I wish to limit how my data is being processed',
+          name: 'msgLimitMyDataProcessing');
+
+  String get msgOpposeMyDataProcessing =>
+      Intl.message('I wish to oppose how my data is being processed',
+          name: 'msgOpposeMyDataProcessing');
+
+  String get msgPhone => Intl.message('phone', name: 'msgPhone');
+
+  String get msgReadMore => Intl.message('read more', name: 'msgReadMore');
+
+  String get msgSend => Intl.message('send', name: 'msgSend');
 
   @Output('submit')
   Stream<GdprModel> get onSubmit => _submitController.stream;

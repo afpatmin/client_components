@@ -18,13 +18,14 @@ import 'package:intl/intl.dart';
       FoModalComponent,
       formDirectives,
       FoTextInputComponent,
-      NgClass,
-      NgIf,
+      coreDirectives
     ],
     pipes: [CapitalizePipe])
 class LoginComponent implements OnDestroy {
   String token = '';
   bool visible = true;
+  String inputType = 'password';
+  String passwordButtonIcon = 'visibility';
 
   final StreamController<LoginEvent> _onLoginController = StreamController();
 
@@ -53,8 +54,7 @@ class LoginComponent implements OnDestroy {
   @Input()
   String label;
 
-  @Input()
-  String state;
+  String state = 'login';
 
   @Input()
   String titleImageUrl;
@@ -69,6 +69,7 @@ class LoginComponent implements OnDestroy {
   bool loading = false;
 
   final String msgUsername = Intl.message('username', name: 'username');
+
   final String msgPassword = Intl.message('password', name: 'password');
   final String msgSend = Intl.message('send', name: 'send');
   final String msgSave = Intl.message('save', name: 'save');
@@ -96,9 +97,8 @@ class LoginComponent implements OnDestroy {
           'reset_password':
               Intl.message('reset password', name: 'reset_password'),
         } {
-    setState('login');
+    //setState('login');
   }
-
   @Output('login')
   Stream<LoginEvent> get onLoginOutput => _onLoginController.stream;
 
@@ -127,19 +127,22 @@ class LoginComponent implements OnDestroy {
       ..password = password);
   }
 
-  void onLoginKeyUp(html.KeyboardEvent e) {
-    if (username != null &&
-        username.isNotEmpty &&
-        password != null &&
-        password.isNotEmpty &&
-        (e.keyCode == html.KeyCode.ENTER ||
-            e.keyCode == html.KeyCode.MAC_ENTER)) {
-      onLogin();
+  void onLoginKeyDown(html.KeyboardEvent e) {
+    if (e.keyCode == html.KeyCode.ENTER ||
+        e.keyCode == html.KeyCode.MAC_ENTER) {
+      e.preventDefault();
+      if (username != null &&
+          username.isNotEmpty &&
+          password != null &&
+          password.isNotEmpty) {
+        onLogin();
+      }
     }
   }
 
   void onRecoverPassword() {
     _onRecoverPasswordController.add(username);
+    setState('reset_password');
   }
 
   void onRecoverPasswordKeyUp(html.KeyboardEvent e) {
@@ -161,6 +164,16 @@ class LoginComponent implements OnDestroy {
     state = newState;
     errorMessage = null;
     onStateChangeController.add(state);
+  }
+
+  void toggleInputType() {
+    if (inputType == 'password') {
+      inputType = 'text';
+      passwordButtonIcon = 'visibility_off';
+    } else {
+      inputType = 'password';
+      passwordButtonIcon = 'visibility';
+    }
   }
 }
 

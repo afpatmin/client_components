@@ -4,28 +4,29 @@
           [header]="label"
           [error]="errorMessage">
   <div id="loginContent">
-
     <div header>
       <img *ngIf="titleImageUrl != null"
            [src]="titleImageUrl"
            alt="logo" />
     </div>
     <ng-container *ngIf="state == 'login'">
-      <form>
+      <div>
         <fo-text-input [disabled]="loading"
                        noFocusShadow
                        [placeholder]="msgUsername"
                        [(ngModel)]="username"
-                       (keyup)="onLoginKeyUp($event)">
+                       (keydown)="onLoginKeyDown($event)">
         </fo-text-input>
         <fo-text-input [disabled]="loading"
                        noFocusShadow
-                       type="password"
+                       [type]="inputType"
+                       [actionButtonIcon]="passwordButtonIcon"
+                       (actionButtonTrigger)="toggleInputType()"
                        [placeholder]="msgPassword"
                        [(ngModel)]="password"
-                       (keyup)="onLoginKeyUp($event)">
+                       (keydown)="onLoginKeyDown($event)">
         </fo-text-input>
-      </form>
+      </div>
       <p *ngIf="showForgotPassword"
          id="forgotPassword"
          (click)="setState('forgot_password')">{{msgForgotPassword}}?</p>
