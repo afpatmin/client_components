@@ -32,7 +32,7 @@ import 'package:intl/intl.dart';
     pipes: [
       CapitalizePipe
     ])
-class GdprFormComponent implements OnDestroy {
+class GdprFormComponent implements OnInit, OnDestroy {
   final ControlGroup form;
   bool termsChecked = false;
   bool sent = false;
@@ -66,30 +66,8 @@ class GdprFormComponent implements OnDestroy {
             ]),
           'comments': Control()
             ..validator = Validators.compose([Validators.maxLength(1000)])
-        }) {
-    options = {
-      '': [
-        FoDropdownOption()
-          ..id = 'gdpr_fetch_my_info'
-          ..label = msgFetchMyInfo,
-        FoDropdownOption()
-          ..id = 'gdpr_fetch_my_info_portable'
-          ..label = msgFetchMyInfoPortable,
-        FoDropdownOption()
-          ..id = 'gdpr_change_my_info'
-          ..label = msgChangeMyInfo,
-        FoDropdownOption()
-          ..id = 'gdpr_limit_my_data_processing'
-          ..label = msgLimitMyDataProcessing,
-        FoDropdownOption()
-          ..id = 'gdpr_oppose_my_data_processing'
-          ..label = msgOpposeMyDataProcessing,
-        FoDropdownOption()
-          ..id = 'gdpr_erase_me'
-          ..label = msgEraseMe
-      ]
-    };
-  }
+        });
+
   String get msgChangeMyInfo =>
       Intl.message('I wish to change/update my information',
           name: 'msgChangeMyInfo');
@@ -153,6 +131,32 @@ class GdprFormComponent implements OnDestroy {
   void submit() {
     _submitController.add(model);
     sent = true;
+  }
+
+  @override
+  void ngOnInit() {
+    options = {
+      '': [
+        FoDropdownOption()
+          ..id = 'gdpr_fetch_my_info'
+          ..label = msgFetchMyInfo,
+        FoDropdownOption()
+          ..id = 'gdpr_fetch_my_info_portable'
+          ..label = msgFetchMyInfoPortable,
+        FoDropdownOption()
+          ..id = 'gdpr_change_my_info'
+          ..label = msgChangeMyInfo,
+        FoDropdownOption()
+          ..id = 'gdpr_limit_my_data_processing'
+          ..label = msgLimitMyDataProcessing,
+        FoDropdownOption()
+          ..id = 'gdpr_oppose_my_data_processing'
+          ..label = msgOpposeMyDataProcessing,
+        FoDropdownOption()
+          ..id = 'gdpr_erase_me'
+          ..label = msgEraseMe
+      ]
+    };
   }
 }
 
