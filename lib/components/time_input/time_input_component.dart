@@ -8,8 +8,7 @@ import 'package:fo_components/components/fo_label/fo_label_component.dart';
     selector: 'time-input',
     templateUrl: 'time_input_component.html',
     styleUrls: ['time_input_component.css'],
-    directives: [FoDropdownSelectComponent, FoLabelComponent],
-    changeDetection: ChangeDetectionStrategy.OnPush)
+    directives: [FoDropdownSelectComponent, FoLabelComponent])
 class TimeInputComponent implements OnDestroy {
   final StreamController<String> _timeController = StreamController<String>();
 
