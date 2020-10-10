@@ -40,38 +40,11 @@ class GdprFormComponent implements OnDestroy {
   Map<String, List<FoDropdownOption>> options;
   final StreamController<bool> openController = StreamController();
   final StreamController<GdprModel> _submitController = StreamController();
-  @Input()
-  set open(bool v) {
-    options = {
-      '': [
-        FoDropdownOption()
-          ..id = 'gdpr_fetch_my_info'
-          ..label = msgFetchMyInfo,
-        FoDropdownOption()
-          ..id = 'gdpr_fetch_my_info_portable'
-          ..label = msgFetchMyInfoPortable,
-        FoDropdownOption()
-          ..id = 'gdpr_change_my_info'
-          ..label = msgChangeMyInfo,
-        FoDropdownOption()
-          ..id = 'gdpr_limit_my_data_processing'
-          ..label = msgLimitMyDataProcessing,
-        FoDropdownOption()
-          ..id = 'gdpr_oppose_my_data_processing'
-          ..label = msgOpposeMyDataProcessing,
-        FoDropdownOption()
-          ..id = 'gdpr_erase_me'
-          ..label = msgEraseMe
-      ]
-    };
-    _open = v;
-  }
-
-  bool get open => _open;
-
   bool _open = false;
+
   @Input()
   String readMoreLink;
+
   GdprFormComponent()
       : form = ControlGroup({
           'firstname': Control()
@@ -101,6 +74,7 @@ class GdprFormComponent implements OnDestroy {
           name: 'msgChangeMyInfo');
   String get msgComments => Intl.message('comments', name: 'msgComments');
   String get msgEmail => Intl.message('email', name: 'msgEmail');
+
   String get msgEraseMe =>
       Intl.message('I wish to erase all my data', name: 'msgEraseMe');
   String get msgFetchMyInfo =>
@@ -115,18 +89,15 @@ class GdprFormComponent implements OnDestroy {
       name: 'msgGdprFormAccept',
       desc:
           'Label next to checkbox that the user must check in order to submit an issue');
-
   String get msgGdprFormCompleted => Intl.message(
       '<h1>Thank you!</h1><p>Your inquiry has been now been sent, and we will take necessary actions and reply to you as soon as we can.</p>',
       name: 'msgGdprFormCompleted',
       desc:
           'Displayed to the user after submitting the gdpr form, can be basic html');
-
   String get msgGdprFormInfo => Intl.message(
       'This form is used for inquiries regarding your rights in accordance with Data Protection Regulation 2016/79.<br /><br />We save the details you provide in accordance with article 17.3.<br /><br />This information is sent to the support contact who registered your details and is logged by the service provider.',
       name: 'msgGdprFormInfo',
       desc: 'Text displayed over the GDPR issue form');
-
   String get msgIssue => Intl.message('issue', name: 'msgIssue');
 
   String get msgLastname => Intl.message('lastname', name: 'msgLastname');
@@ -148,6 +119,35 @@ class GdprFormComponent implements OnDestroy {
   @Output('submit')
   Stream<GdprModel> get onSubmit => _submitController.stream;
 
+  bool get open => _open;
+
+  @Input()
+  set open(bool v) {
+    options = {
+      '': [
+        FoDropdownOption()
+          ..id = 'gdpr_fetch_my_info'
+          ..label = msgFetchMyInfo,
+        FoDropdownOption()
+          ..id = 'gdpr_fetch_my_info_portable'
+          ..label = msgFetchMyInfoPortable,
+        FoDropdownOption()
+          ..id = 'gdpr_change_my_info'
+          ..label = msgChangeMyInfo,
+        FoDropdownOption()
+          ..id = 'gdpr_limit_my_data_processing'
+          ..label = msgLimitMyDataProcessing,
+        FoDropdownOption()
+          ..id = 'gdpr_oppose_my_data_processing'
+          ..label = msgOpposeMyDataProcessing,
+        FoDropdownOption()
+          ..id = 'gdpr_erase_me'
+          ..label = msgEraseMe
+      ]
+    };
+    _open = v;
+  }
+
   @Output('openChange')
   Stream<bool> get openChange => openController.stream;
 
@@ -159,6 +159,11 @@ class GdprFormComponent implements OnDestroy {
   void submit() {
     _submitController.add(model);
     sent = true;
+  }
+
+  void toggleOpen(bool event) {
+    open = event;
+    openController.add(event);
   }
 }
 

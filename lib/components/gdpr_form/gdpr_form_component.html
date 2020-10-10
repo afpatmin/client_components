@@ -1,6 +1,6 @@
 <fo-modal header="GDPR"
           [visible]="open"
-          (visibleChange)="open = $event; openController.add($event);">
+          (visibleChange)="toggleOpen($event)">
   <div *ngIf="open">
     <div *ngIf="!sent">
       <div class="row collapse">
