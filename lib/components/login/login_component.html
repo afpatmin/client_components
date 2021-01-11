@@ -71,7 +71,6 @@
                    clearSize
                    (trigger)="setState('login')"></fo-button>
         <fo-button [label]="msgSend | capitalize"
-                   [disabled]="resetForm.valid != true"
                    white
                    clearSize
                    [disabled]="loading || username?.isEmpty != false"
@@ -86,7 +85,7 @@
         <fo-button [label]="msgSave | capitalize"
                    white
                    clearSize
-                   [disabled]="loading || password?.isEmpty != false || token?.isEmpty != false"
+                   [disabled]="loading || resetForm.valid != true"
                    (trigger)="onUpdatePassword()">
         </fo-button>
       </ng-container>
