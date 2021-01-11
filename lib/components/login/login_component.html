@@ -42,16 +42,19 @@
     </ng-container>
     <ng-container *ngIf="state == 'reset_password'">
       <p id="resetPasswordDescription">{{msgResetPasswordDescription | capitalize}}</p>
-      <fo-text-input noFocusShadow
-                     [disabled]="loading"
-                     [placeholder]="msgToken"
-                     [(ngModel)]="token">
-      </fo-text-input>
-      <fo-text-input noFocusShadow
-                     [disabled]="loading"
-                     [placeholder]="msgNewPassword"
-                     [(ngModel)]="password">
-      </fo-text-input>
+      <form [ngFormModel]="resetForm">
+        <fo-text-input noFocusShadow
+                       [disabled]="loading"
+                       [placeholder]="msgToken"
+                       [(ngModel)]="token">
+        </fo-text-input>
+        <fo-text-input noFocusShadow
+                       ngControl="password"
+                       [disabled]="loading"
+                       [placeholder]="msgNewPassword"
+                       [(ngModel)]="password">
+        </fo-text-input>
+      </form>
     </ng-container>
     <div footer
          id="footer">
@@ -68,6 +71,7 @@
                    clearSize
                    (trigger)="setState('login')"></fo-button>
         <fo-button [label]="msgSend | capitalize"
+                   [disabled]="resetForm.valid != true"
                    white
                    clearSize
                    [disabled]="loading || username?.isEmpty != false"

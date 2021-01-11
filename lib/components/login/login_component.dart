@@ -27,6 +27,13 @@ class LoginComponent implements OnDestroy {
   String inputType = 'password';
   String passwordButtonIcon = 'visibility';
 
+  final ControlGroup resetForm = ControlGroup({
+    'password': Control(
+        '',
+        Validators.compose(
+            [Validators.minLength(8), Validators.maxLength(128)]))
+  });
+
   final StreamController<LoginEvent> _onLoginController = StreamController();
 
   final StreamController<String> _onRecoverPasswordController =
