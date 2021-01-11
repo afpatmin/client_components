@@ -42,7 +42,8 @@
     </ng-container>
     <ng-container *ngIf="state == 'reset_password'">
       <p id="resetPasswordDescription">{{msgResetPasswordDescription | capitalize}}</p>
-      <form [ngFormModel]="resetForm">
+      <form [ngFormModel]="resetForm"
+            id="resetForm">
         <fo-text-input noFocusShadow
                        [disabled]="loading"
                        [placeholder]="msgToken"
