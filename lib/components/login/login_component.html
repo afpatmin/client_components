@@ -45,6 +45,7 @@
       <form [ngFormModel]="resetForm"
             id="resetForm">
         <fo-text-input noFocusShadow
+                       ngControl="token"
                        [disabled]="loading"
                        [placeholder]="msgToken"
                        [(ngModel)]="token">
