@@ -1,6 +1,7 @@
 <fo-text-input [label]="label"
                noFocusShadow
                [disabled]="disabled"
+               [placeholder]="placeholder"
                [(ngModel)]="model"
                (change)="onChange($event)"
                [actionButtonLabel]="msgAdd | capitalize"
