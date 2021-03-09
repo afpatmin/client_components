@@ -31,8 +31,7 @@
           padding: 0 2px;
         }
         td {
-          overflow-y: auto;
-          overflow-x: auto;
+          overflow: hidden;
           vertical-align: top;
           -webkit-transition: width 100ms ease;
           -moz-transition: width 100ms ease;
