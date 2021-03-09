@@ -7,21 +7,19 @@ import 'package:fo_components/components/fo_text_input/fo_text_input_component.d
 import 'package:fo_components/pipes/capitalize_pipe.dart';
 
 @Component(
-    selector: 'multi-input',
-    templateUrl: 'multi_input_component.html',
-    styleUrls: [
-      'multi_input_component.css'
-    ],
-    directives: [
-      formDirectives,
-      FoButtonComponent,
-      FoTextInputComponent,
-      NgFor,
-      NgIf,
-    ],
-    pipes: [
-      CapitalizePipe
-    ])
+  selector: 'multi-input',
+  templateUrl: 'multi_input_component.html',
+  styleUrls: ['multi_input_component.css'],
+  directives: [
+    formDirectives,
+    FoButtonComponent,
+    FoTextInputComponent,
+    NgFor,
+    NgIf,
+  ],
+  pipes: [CapitalizePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+)
 class MultiInputComponent implements OnDestroy {
   final StreamController<List<String>> _valueChangeController =
       StreamController<List<String>>();
