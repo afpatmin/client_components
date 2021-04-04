@@ -16,9 +16,7 @@ import 'package:intl/intl.dart';
 @Component(
     selector: 'gdpr-form',
     templateUrl: 'gdpr_form_component.html',
-    styleUrls: [
-      'gdpr_form_component.css'
-    ],
+    styleUrls: ['gdpr_form_component.css'],
     directives: [
       FoModalComponent,
       formDirectives,
@@ -29,9 +27,8 @@ import 'package:intl/intl.dart';
       MaterialCheckboxComponent,
       NgIf
     ],
-    pipes: [
-      CapitalizePipe
-    ])
+    pipes: [CapitalizePipe],
+    changeDetection: ChangeDetectionStrategy.OnPush)
 class GdprFormComponent implements OnDestroy {
   final ControlGroup form;
   bool termsChecked = false;
