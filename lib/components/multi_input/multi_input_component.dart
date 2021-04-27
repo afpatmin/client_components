@@ -59,13 +59,6 @@ class MultiInputComponent implements OnDestroy {
     }
   }
 
-  void onKeyDown(dom.KeyEvent event) {
-    if (event.keyCode == dom.KeyCode.ENTER ||
-        event.keyCode == dom.KeyCode.MAC_ENTER) {
-      event.preventDefault();
-    }
-  }
-
   void onRemove(String v) {
     value.remove(v);
     _valueChangeController.add(value);
