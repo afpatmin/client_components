@@ -2,8 +2,8 @@
                noFocusShadow
                [disabled]="disabled"
                [placeholder]="placeholder"
+               (keydown)="onKeyDown($event)"
                [(ngModel)]="model"
-               (change)="onChange($event)"
                [actionButtonLabel]="msgAdd | capitalize"
                (actionButtonTrigger)="onAdd()">
 </fo-text-input>
