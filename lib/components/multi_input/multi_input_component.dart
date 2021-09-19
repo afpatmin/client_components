@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'package:intl/intl.dart';
+
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:fo_components/components/fo_button/fo_button_component.dart';
 import 'package:fo_components/components/fo_text_input/fo_text_input_component.dart';
 import 'package:fo_components/pipes/capitalize_pipe.dart';
+import 'package:intl/intl.dart';
 
 @Component(
   selector: 'multi-input',
@@ -26,20 +27,6 @@ class MultiInputComponent implements OnDestroy {
 
   final String msgAdd = Intl.message('add', name: 'add');
 
-  void onAdd() {
-    value ??= [];
-    value.add(model);
-    model = '';
-    _valueChangeController.add(value);
-  }
-
-  void onRemove(String v) {
-    value.remove(v);
-    _valueChangeController.add(value);
-  }
-
-  void onChange(Object event) {}
-
   String model;
 
   @Input()
@@ -60,5 +47,19 @@ class MultiInputComponent implements OnDestroy {
   @override
   void ngOnDestroy() {
     _valueChangeController.close();
+  }
+
+  void onAdd() {
+    value ??= [];
+    value.add(model);
+    model = '';
+    _valueChangeController.add(value);
+  }
+
+  void onChange(Object event) {}
+
+  void onRemove(String v) {
+    value.remove(v);
+    _valueChangeController.add(value);
   }
 }
