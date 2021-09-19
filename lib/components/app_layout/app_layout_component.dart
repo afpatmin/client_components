@@ -48,8 +48,10 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   final int miniWidth = 40;
 
   FoSidebarItem _activeItem;
+
   @Input()
   String backgroundColor = '#666';
+
   @Input()
   String header = 'Menu';
 
@@ -67,8 +69,10 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
 
   @Input()
   security.SafeResourceUrl instructionsUrl;
+
   @Input()
   bool instructionsModalVisible = false;
+
   AppLayoutComponent(this.router, this._domSanitizationService) {
     router.onRouteActivated.listen(_onRouteActivated);
   }
