@@ -147,7 +147,9 @@ class LoginComponent implements OnDestroy {
   void onLoginKeyDown(html.KeyboardEvent e) {
     if (e.keyCode == html.KeyCode.ENTER ||
         e.keyCode == html.KeyCode.MAC_ENTER) {
-      e.preventDefault();
+      e
+        ..preventDefault()
+        ..stopPropagation();
       if (username != null &&
           username.isNotEmpty &&
           password != null &&

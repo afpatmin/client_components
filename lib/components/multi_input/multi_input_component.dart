@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:fo_components/components/fo_button/fo_button_component.dart';
@@ -50,13 +49,13 @@ class MultiInputComponent implements OnDestroy {
   }
 
   void onAdd() {
-    value ??= [];
-    value.add(model);
-    model = '';
-    _valueChangeController.add(value);
+    if (model != null && model.isNotEmpty) {
+      value ??= [];
+      value.add(model);
+      model = '';
+      _valueChangeController.add(value);
+    }
   }
-
-  void onChange(Object event) {}
 
   void onRemove(String v) {
     value.remove(v);
