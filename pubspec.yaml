@@ -11,6 +11,4 @@ dependencies:
   angular_forms: ^4.0.1
   angular_router: ^3.0.1
   fo_components: ^3.0.1
-
-dev_dependencies:
   sass_builder: ^2.1.4

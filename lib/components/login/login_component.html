@@ -4,7 +4,7 @@
           [header]="label"
           [error]="errorMessage">
   <div id="loginContent">
-    <div header>
+    <div>
       <img *ngIf="titleImageUrl != null"
            [src]="titleImageUrl"
            alt="logo" />
@@ -12,13 +12,11 @@
     <ng-container *ngIf="state == 'login'">
       <div>
         <fo-text-input [disabled]="loading"
-                       noFocusShadow
                        [placeholder]="msgUsername"
                        [(ngModel)]="username"
                        (keydown)="onLoginKeyDown($event)">
         </fo-text-input>
         <fo-text-input [disabled]="loading"
-                       noFocusShadow
                        [type]="inputType"
                        [actionButtonIcon]="passwordButtonIcon"
                        (actionButtonTrigger)="toggleInputType()"
@@ -33,8 +31,7 @@
     </ng-container>
     <ng-container *ngIf="state == 'forgot_password'">
       <p id="forgotPasswordDescription">{{$pipe.capitalize(msgForgotPasswordDescription)}}</p>
-      <fo-text-input noFocusShadow
-                     [disabled]="loading"
+      <fo-text-input [disabled]="loading"
                      [placeholder]="msgUsername"
                      [(ngModel)]="username"
                      (keyup)="onRecoverPasswordKeyUp($event)">
@@ -44,22 +41,19 @@
       <p id="resetPasswordDescription">{{$pipe.capitalize(msgResetPasswordDescription)}}</p>
       <form [ngFormModel]="resetForm"
             id="resetForm">
-        <fo-text-input noFocusShadow
-                       ngControl="token"
+        <fo-text-input ngControl="token"
                        [disabled]="loading"
                        [placeholder]="msgToken"
                        [(ngModel)]="token">
         </fo-text-input>
-        <fo-text-input noFocusShadow
-                       ngControl="password"
+        <fo-text-input ngControl="password"
                        [disabled]="loading"
                        [placeholder]="msgNewPassword"
                        [(ngModel)]="password">
         </fo-text-input>
       </form>
     </ng-container>
-    <div footer
-         id="footer">
+    <div id="footer">
       <fo-button *ngIf="state == 'login'"
                  [label]="$pipe.capitalize(msgLogin)"
                  clearSize

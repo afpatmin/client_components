@@ -3,6 +3,7 @@ import 'dart:html' as html;
 
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
+import 'package:fo_components/components/fo_icon/fo_icon_component.dart';
 import 'package:fo_components/pipes/capitalize_pipe.dart';
 
 @Component(
@@ -12,14 +13,15 @@ import 'package:fo_components/pipes/capitalize_pipe.dart';
     directives: [
       coreDirectives,
       routerDirectives,
+      FoIconComponent,
     ],
     pipes: [CapitalizePipe])
 class AppLayoutComponent implements OnDestroy, AfterViewInit {
   @ViewChild('listContent')
-  late html.Element listContent;
+  html.Element? listContent;
 
   @ViewChild('list')
-  late html.Element list;
+  html.Element? list;
 
   bool showScrollIndicator = false;
 
@@ -55,8 +57,11 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
     router.onRouteActivated.listen(_onRouteActivated);
   }
 
+  int? get opacity => animating ? 0 : 1;
+
   @Output('expandedChange')
   Stream<bool> get onExpandedChangeOutput => _onExpandedChangeController.stream;
+
   String? get pageHeader => _activeItem?.label;
 
   String? get pageIcon => _activeItem?.icon;
@@ -73,8 +78,8 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   @override
   void ngAfterViewInit() {
     Future.delayed(const Duration(milliseconds: 100)).then((_) {
-      showScrollIndicator = listContent.clientHeight > list.clientHeight;
-      list.onScroll.first.then((_) {
+      showScrollIndicator = listContent!.clientHeight > list!.clientHeight;
+      list!.onScroll.first.then((_) {
         showScrollIndicator = false;
       });
     });
@@ -86,7 +91,7 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   }
 
   void scrollNavToBottom() {
-    list.scrollTo(0, list.clientHeight);
+    list!.scrollTo(0, list!.clientHeight);
   }
 
   void toggleExpanded() {

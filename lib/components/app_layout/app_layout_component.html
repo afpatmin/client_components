@@ -11,7 +11,7 @@
                [style.padding-top]="paddingTop">
             <p *ngIf="expanded"
                class="fade-opacity"
-               [style.opacity]="animating ? 0 : 1">{{$pipe.capitalize(header)}}</p>
+               [style.opacity]="opacity">{{$pipe.capitalize(header)}}</p>
           </div>
           <div #list
                id="sidebar-list">
@@ -70,10 +70,11 @@
           <div class="col">
             <div id="page-header">
               <h3 class="margin-top-none margin-bottom-none">
-                <fo-icon [style.color]="backgroundColor"
-                         [icon]="pageIcon"
+                <fo-icon *ngIf="pageIcon != null"
+                         [style.color]="backgroundColor"
+                         [icon]="pageIcon!"
                          [material]="true"></fo-icon>
-                <span>{{$pipe.capitalize(pageHeader)}}</span>
+                <span *ngIf="pageHeader != null">{{$pipe.capitalize(pageHeader!)}}</span>
               </h3>
               <div id="page-content">
                 <ng-content></ng-content>
