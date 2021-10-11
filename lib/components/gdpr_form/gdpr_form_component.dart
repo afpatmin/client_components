@@ -154,11 +154,11 @@ class GdprFormComponent implements OnDestroy {
 }
 
 class GdprModel {
-  final String firstname;
-  final String lastname;
-  final String phone;
-  final String email;
-  final String comments;
+  String firstname;
+  String lastname;
+  String phone;
+  String email;
+  String comments;
   String selected_issue = 'gdpr_fetch_my_info';
 
   GdprModel({

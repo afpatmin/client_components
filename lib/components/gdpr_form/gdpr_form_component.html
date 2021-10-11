@@ -3,87 +3,61 @@
           (visibleChange)="toggleOpen($event)">
   <div *ngIf="open">
     <div *ngIf="!sent">
-      <div class="row collapse">
-        <div class="col overflow">
-          <form [ngFormModel]="form">
-            <div class="row">
-              <div class="col overflow">
-                <p class="margin-top-none margin-bottom-small text-small"
-                   [innerHtml]="msgGdprFormInfo"></p>
-                <p class="margin-top-small text-small"
-                   *ngIf="readMoreLink != null">
-                  <a href="{{readMoreLink}}"
-                     target="_blank">{{msgReadMore}}</a>
-                </p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="m6 col overflow">
-                <fo-dropdown-select label="{{msgIssue}}*"
-                                    [(selectedId)]="model.selected_issue"
-                                    [options]="options">
-                </fo-dropdown-select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="m6 col overflow">
-                <fo-text-input label="{{msgFirstname}}*"
-                               ngControl="firstname"
-                               [(ngModel)]="model.firstname">
-                </fo-text-input>
-              </div>
-              <div class="m6 col overflow">
-                <fo-text-input label="{{msgLastname}}*"
-                               ngControl="lastname"
-                               [(ngModel)]="model.lastname">
-                </fo-text-input>
-              </div>
-            </div>
-            <div class="row">
-              <div class="m6 col overflow">
-                <fo-text-input label="{{msgPhone}}*"
-                               ngControl="phone"
-                               [(ngModel)]="model.phone">
-                </fo-text-input>
-              </div>
-              <div class="m6 col overflow">
-                <fo-text-input label="{{msgEmail}}*"
-                               ngControl="email"
-                               [(ngModel)]="model.email">
-                </fo-text-input>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col overflow">
-                <fo-textarea-input [label]="msgComments"
-                                   ngControl="comments"
-                                   [(ngModel)]="model.comments"
-                                   multiline
-                                   [rows]="5">
-                </fo-textarea-input>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col overflow">
-                <material-checkbox [label]="msgGdprFormAccept"
-                                   [(checked)]="termsChecked">
-                </material-checkbox>
-              </div>
-            </div>
-          </form>
+      <form [ngFormModel]="form">
+        <p class="margin-top-none margin-bottom-small text-small"
+           [innerHtml]="msgGdprFormInfo"></p>
+        <p class="mt-8 text-small"
+           *ngIf="readMoreLink != null">
+          <a href="{{readMoreLink}}"
+             target="_blank">{{msgReadMore}}</a>
+        </p>
+        <fo-dropdown-select class="mt-16"
+                            label="{{msgIssue}}*"
+                            [(selectedId)]="model.selected_issue"
+                            [options]="options">
+        </fo-dropdown-select>
+        <fo-text-input class="mt-16"
+                       label="{{msgFirstname}}*"
+                       ngControl="firstname"
+                       [(ngModel)]="model.firstname">
+        </fo-text-input>
+        <fo-text-input class="mt-16"
+                       label="{{msgLastname}}*"
+                       ngControl="lastname"
+                       [(ngModel)]="model.lastname">
+        </fo-text-input>
+        <fo-text-input class="mt-16"
+                       label="{{msgPhone}}*"
+                       ngControl="phone"
+                       [(ngModel)]="model.phone">
+        </fo-text-input>
+        <fo-text-input class="mt-16"
+                       label="{{msgEmail}}*"
+                       ngControl="email"
+                       [(ngModel)]="model.email">
+        </fo-text-input>
+        <fo-textarea-input class="mt-16"
+                           [label]="msgComments"
+                           ngControl="comments"
+                           [(ngModel)]="model.comments"
+                           [rows]="5">
+        </fo-textarea-input>
+        <div class="mt-16">
+          <fo-check [label]="msgGdprFormAccept"
+                    [(checked)]="termsChecked">
+          </fo-check>
         </div>
-      </div>
-      <div class="row"
-           footer>
-        <div class="col text-right overflow">
-          <fo-button [label]="$pipe.capitalize(msgSend)"
-                     (trigger)="submit()"
-                     [disabled]="!form.valid || !termsChecked"></fo-button>
-        </div>
+      </form>
+      <div class="text-right">
+        <fo-button [label]="$pipe.capitalize(msgSend)"
+                   (trigger)="submit()"
+                   [disabled]="!form.valid || !termsChecked"></fo-button>
       </div>
     </div>
-    <div *ngIf="sent">
-      <p [innerHtml]="msgGdprFormCompleted"></p>
-    </div>
+  </div>
+
+  <div *ngIf="sent"
+       id="sentFeedback">
+    <p [innerHtml]="msgGdprFormCompleted"></p>
   </div>
 </fo-modal>
