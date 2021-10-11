@@ -33,13 +33,13 @@ class GdprFormComponent implements OnDestroy {
   bool termsChecked = false;
   bool sent = false;
   final GdprModel model = GdprModel();
-  Map<String, List<FoDropdownOption>> options;
+  Map<String, List<FoDropdownOption>> options = {};
   final StreamController<bool> openController = StreamController();
   final StreamController<GdprModel> _submitController = StreamController();
   bool _open = false;
 
   @Input()
-  String readMoreLink;
+  String? readMoreLink;
 
   GdprFormComponent()
       : form = ControlGroup({
@@ -154,12 +154,20 @@ class GdprFormComponent implements OnDestroy {
 }
 
 class GdprModel {
-  String firstname;
-  String lastname;
-  String phone;
-  String email;
-  String comments;
+  final String firstname;
+  final String lastname;
+  final String phone;
+  final String email;
+  final String comments;
   String selected_issue = 'gdpr_fetch_my_info';
+
+  GdprModel({
+    this.firstname = '',
+    this.lastname = '',
+    this.phone = '',
+    this.email = '',
+    this.comments = '',
+  });
 
   Map<String, String> toJson() => {
         'firstname': firstname,

@@ -16,10 +16,10 @@ import 'package:fo_components/pipes/capitalize_pipe.dart';
     pipes: [CapitalizePipe])
 class AppLayoutComponent implements OnDestroy, AfterViewInit {
   @ViewChild('listContent')
-  html.Element listContent;
+  late html.Element listContent;
 
   @ViewChild('list')
-  html.Element list;
+  late html.Element list;
 
   bool showScrollIndicator = false;
 
@@ -31,7 +31,7 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
 
   final int miniWidth = 40;
 
-  FoSidebarItem _activeItem;
+  FoSidebarItem? _activeItem;
 
   @Input()
   String backgroundColor = '#666';
@@ -57,16 +57,16 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
 
   @Output('expandedChange')
   Stream<bool> get onExpandedChangeOutput => _onExpandedChangeController.stream;
-  String get pageHeader => _activeItem?.label;
+  String? get pageHeader => _activeItem?.label;
 
-  String get pageIcon => _activeItem?.icon;
+  String? get pageIcon => _activeItem?.icon;
 
   String get sidebarWidth => (expanded) ? '${width}px' : '${miniWidth}px';
 
   String calcIFrameHeight() =>
-      ((html.window.innerWidth * 0.6) * 0.615).round().toString();
+      ((html.window.innerWidth! * 0.6) * 0.615).round().toString();
 
-  String calcIFrameWidth() => (html.window.innerWidth * 0.6).toString();
+  String calcIFrameWidth() => (html.window.innerWidth! * 0.6).toString();
 
   bool isActive(FoSidebarItem item) => item == _activeItem;
 
@@ -101,14 +101,14 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   void _onRouteActivated(RouterState state) {
     _activeItem = null;
 
-    var path = state.path; //.path.replaceAll('/', '').replaceAll('#', '');
-    if (path == null || path.isEmpty) {
+    var path = state.path;
+    if (path.isEmpty) {
       path = 'index.html';
     }
 
     for (final category in categories) {
-      _activeItem = category.items
-          .firstWhere((i) => path.contains(i.url), orElse: () => null);
+      _activeItem = category.items.firstWhere((i) => path.contains(i.url),
+          orElse: () => category.items.first);
     }
   }
 }

@@ -57,30 +57,30 @@ class LoginComponent implements OnDestroy {
   final Map<String, String> stateLabels;
 
   @Input()
-  String username;
+  String? username;
 
   @Input()
-  String password;
+  String? password;
 
   @Input()
-  String errorMessage;
+  String? errorMessage;
 
   @Input()
   bool showForgotPassword = true;
 
   @Input()
-  String label;
+  String? label;
 
   String state = 'login';
 
   @Input()
-  String titleImageUrl;
+  String? titleImageUrl;
 
   @Input()
-  String altUrl;
+  String? altUrl;
 
   @Input()
-  String altUrlTitle;
+  String? altUrlTitle;
 
   @Input()
   bool loading = false;
@@ -139,9 +139,8 @@ class LoginComponent implements OnDestroy {
   }
 
   void onLogin() {
-    _onLoginController.add(LoginEvent()
-      ..username = username
-      ..password = password);
+    _onLoginController
+        .add(LoginEvent(username: username!, password: password!));
   }
 
   void onLoginKeyDown(html.KeyboardEvent e) {
@@ -151,16 +150,16 @@ class LoginComponent implements OnDestroy {
         ..preventDefault()
         ..stopPropagation();
       if (username != null &&
-          username.isNotEmpty &&
+          username!.isNotEmpty &&
           password != null &&
-          password.isNotEmpty) {
+          password!.isNotEmpty) {
         onLogin();
       }
     }
   }
 
   void onRecoverPassword() {
-    _onRecoverPasswordController.add(username);
+    _onRecoverPasswordController.add(username!);
     setState('reset_password');
   }
 
@@ -172,10 +171,8 @@ class LoginComponent implements OnDestroy {
   }
 
   void onUpdatePassword() {
-    _onUpdatePasswordController.add(UpdatePasswordEvent()
-      ..username = username
-      ..password = password
-      ..token = token);
+    _onUpdatePasswordController.add(UpdatePasswordEvent(
+        username: username!, password: password!, token: token));
     setState('login');
   }
 
@@ -197,12 +194,17 @@ class LoginComponent implements OnDestroy {
 }
 
 class LoginEvent {
-  String username;
-  String password;
+  final String username;
+  final String password;
+
+  LoginEvent({required this.username, required this.password});
 }
 
 class UpdatePasswordEvent {
-  String username;
-  String password;
-  String token;
+  final String username;
+  final String password;
+  final String token;
+
+  UpdatePasswordEvent(
+      {required this.username, required this.password, required this.token});
 }

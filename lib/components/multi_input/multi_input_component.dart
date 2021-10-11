@@ -26,16 +26,16 @@ class MultiInputComponent implements OnDestroy {
 
   final String msgAdd = Intl.message('add', name: 'add');
 
-  String model;
+  String model = '';
 
   @Input()
-  String label;
+  String? label;
 
   @Input()
   bool disabled = false;
 
   @Input()
-  String placeholder;
+  String? placeholder;
 
   @Input()
   List<String> value = [];
@@ -49,8 +49,7 @@ class MultiInputComponent implements OnDestroy {
   }
 
   void onAdd() {
-    if (model != null && model.isNotEmpty) {
-      value ??= [];
+    if (model.isNotEmpty) {
       value.add(model);
       model = '';
       _valueChangeController.add(value);
