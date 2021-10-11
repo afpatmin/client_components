@@ -76,7 +76,7 @@
       <div class="row"
            footer>
         <div class="col text-right overflow">
-          <fo-button [label]="msgSend | capitalize"
+          <fo-button [label]="$pipe.capitalize(msgSend)"
                      (trigger)="submit()"
                      [disabled]="!form.valid || !termsChecked"></fo-button>
         </div>

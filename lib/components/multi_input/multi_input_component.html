@@ -3,7 +3,7 @@
                [disabled]="disabled"
                [placeholder]="placeholder"
                [(ngModel)]="model"
-               [actionButtonLabel]="msgAdd | capitalize"
+               [actionButtonLabel]="$pipe.capitalize(msgAdd)"
                (actionButtonTrigger)="onAdd()">
 </fo-text-input>
 <div id="output"

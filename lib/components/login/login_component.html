@@ -32,7 +32,7 @@
          (click)="setState('forgot_password')">{{msgForgotPassword}}?</p>
     </ng-container>
     <ng-container *ngIf="state == 'forgot_password'">
-      <p id="forgotPasswordDescription">{{msgForgotPasswordDescription | capitalize}}</p>
+      <p id="forgotPasswordDescription">{{$pipe.capitalize(msgForgotPasswordDescription)}}</p>
       <fo-text-input noFocusShadow
                      [disabled]="loading"
                      [placeholder]="msgUsername"
@@ -41,7 +41,7 @@
       </fo-text-input>
     </ng-container>
     <ng-container *ngIf="state == 'reset_password'">
-      <p id="resetPasswordDescription">{{msgResetPasswordDescription | capitalize}}</p>
+      <p id="resetPasswordDescription">{{$pipe.capitalize(msgResetPasswordDescription)}}</p>
       <form [ngFormModel]="resetForm"
             id="resetForm">
         <fo-text-input noFocusShadow
@@ -61,18 +61,18 @@
     <div footer
          id="footer">
       <fo-button *ngIf="state == 'login'"
-                 [label]="msgLogin | capitalize"
+                 [label]="$pipe.capitalize(msgLogin)"
                  clearSize
                  white
                  [disabled]="loading || username?.isEmpty != false || password?.isEmpty != false"
                  (trigger)="onLogin()">
       </fo-button>
       <ng-container *ngIf="state == 'forgot_password'">
-        <fo-button [label]="msgBack | capitalize"
+        <fo-button [label]="$pipe.capitalize(msgBack)"
                    white
                    clearSize
                    (trigger)="setState('login')"></fo-button>
-        <fo-button [label]="msgSend | capitalize"
+        <fo-button [label]="$pipe.capitalize(msgSend)"
                    white
                    clearSize
                    [disabled]="loading || username?.isEmpty != false"
@@ -80,11 +80,11 @@
         </fo-button>
       </ng-container>
       <ng-container *ngIf="state == 'reset_password'">
-        <fo-button [label]="msgBack | capitalize"
+        <fo-button [label]="$pipe.capitalize(msgBack)"
                    white
                    clearSize
                    (trigger)="setState('login')"> </fo-button>
-        <fo-button [label]="msgSave | capitalize"
+        <fo-button [label]="$pipe.capitalize(msgSave)"
                    white
                    clearSize
                    [disabled]="loading || resetForm.valid != true"
