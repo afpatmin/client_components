@@ -9,34 +9,29 @@
           <div id="sidebar-header"
                [style.background-color]="backgroundColor"
                [style.padding-top]="paddingTop">
-            <p *ngIf="expanded"
-               class="fade-opacity"
-               [style.opacity]="opacity">{{$pipe.capitalize(header)}}</p>
+            <p *ngIf="expanded">{{$pipe.capitalize(header)}}</p>
           </div>
           <div #list
                id="sidebar-list">
             <div #listContent>
-              <ul *ngIf="expanded"
-                  class="fade-opacity"
-                  [style.opacity]="animating ? 0 : 1">
-                <div group
-                     *ngFor="let category of categories">
-                  <div label>{{$pipe.capitalize(category.title)}}</div>
-                  <li *ngFor="let item of category.items"
-                      [class.active]="isActive(item)"
-                      (click)="router.navigate(item.url)">
-                    <fo-icon [icon]="item.icon"
-                             [material]="true"></fo-icon>&nbsp;{{$pipe.capitalize(item.label)}}
-                  </li>
-                </div>
-              </ul>
+              <ng-container *ngIf="expanded">
+                <ng-container *ngFor="let category of categories">
+                  <div class="label">{{$pipe.capitalize(category.title)}}</div>
+                  <ul>
+                    <li *ngFor="let item of category.items"
+                        [class.active]="isActive(item)"
+                        (click)="router.navigate(item.url)">
+                      <fo-icon [icon]="item.icon"
+                               [material]="true"></fo-icon>&nbsp;{{$pipe.capitalize(item.label)}}
+                    </li>
+                  </ul>
+                </ng-container>
+              </ng-container>
               <div id="collapsedList"
-                   *ngIf="!expanded"
-                   class="fade-opacity"
-                   [style.opacity]="animating ? 0 : 1">
+                   *ngIf="!expanded">
                 <div *ngFor="let category of categories">
                   <div *ngFor="let item of category.items"
-                       class="clickable text-center padding-top-small padding-bottom-small mini-item"
+                       class="mini-item"
                        [class.active]="isActive(item)"
                        (click)="router.navigate(item.url)">
                     <fo-icon [icon]="item.icon"
@@ -55,7 +50,6 @@
                      [material]="true"></fo-icon>
           </div>
           <div id="toggle"
-               class="text-right"
                (click)="toggleExpanded()">
             <fo-icon [icon]="(expanded) ? 'keyboard_arrow_left' : 'keyboard_arrow_right'"
                      [material]="true"></fo-icon>
@@ -64,21 +58,18 @@
       </td>
       <!-- Page Content -->
       <td>
-        <div class="row collapse"
-             id="main-row"
+        <div id="main-row"
              [style.padding-top]="paddingTop">
-          <div class="col">
-            <div id="page-header">
-              <h3 class="margin-top-none margin-bottom-none">
-                <fo-icon *ngIf="pageIcon != null"
-                         [style.color]="backgroundColor"
-                         [icon]="pageIcon!"
-                         [material]="true"></fo-icon>
-                <span *ngIf="pageHeader != null">{{$pipe.capitalize(pageHeader!)}}</span>
-              </h3>
-              <div id="page-content">
-                <ng-content></ng-content>
-              </div>
+          <div id="page-header">
+            <h3>
+              <fo-icon *ngIf="pageIcon != null"
+                       [style.color]="backgroundColor"
+                       [icon]="pageIcon!"
+                       [material]="true"></fo-icon>
+              <span *ngIf="pageHeader != null">{{$pipe.capitalize(pageHeader!)}}</span>
+            </h3>
+            <div id="page-content">
+              <ng-content></ng-content>
             </div>
           </div>
         </div>

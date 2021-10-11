@@ -12,13 +12,6 @@
     top: 0;
     left: 0;
 
-    .fade-opacity {
-      -webkit-transition: opacity 200ms ease;
-      -moz-transition: opacity 200ms ease;
-      -o-transition: opacity 200ms ease;
-      transition: opacity 200ms ease;
-    }
-
     table {
       width: 100%;
       margin: 0;
@@ -74,18 +67,6 @@
               flex: 1;
               overflow-y: auto;
               -ms-overflow-style: none;
-
-              material-list {
-                material-list-item {
-                  material-icon {
-                    color: #888;
-                  }
-                }
-
-                material-list-item.active {
-                  background-color: #ddd;
-                }
-              }
               div#collapsedList {
                 margin-top: 0.5em;
               }
@@ -96,7 +77,9 @@
             }
 
             div.mini-item {
-              material-icon {
+              cursor: pointer;
+              text-align: center;
+              fo-icon {
                 color: #888;
               }
             }
@@ -120,7 +103,7 @@
             position: absolute;
             bottom: 40px;
             width: 100%;
-            material-icon {
+            fo-icon {
               margin-right: 0.5em;
             }
           }
@@ -129,6 +112,7 @@
           }
 
           div#toggle {
+            text-align: right;
             flex: 0;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -141,7 +125,7 @@
             background-color: #eee;
             padding: 0.5rem 0;
 
-            material-icon {
+            fo-icon {
               margin-right: 0.5rem;
             }
           }
@@ -150,10 +134,11 @@
             min-width: 315px;
 
             #page-header {
-              material-icon {
-                ::ng-deep i {
-                  font-size: 3rem;
-                }
+              h3 {
+                margin: 0;
+              }
+              fo-icon {
+                font-size: 3rem;
               }
               span {
                 margin-left: 0.5rem;
@@ -182,7 +167,6 @@
 
           td {
             div#main-row {
-              //padding-top: 0 !important;
               div#page-header {
                 display: none;
               }

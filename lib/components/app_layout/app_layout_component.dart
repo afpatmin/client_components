@@ -42,7 +42,7 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   String header = 'Menu';
 
   @Input()
-  String paddingTop = '85px';
+  String paddingTop = '0px';
 
   @Input()
   bool expanded = false;
@@ -56,8 +56,6 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   AppLayoutComponent(this.router) {
     router.onRouteActivated.listen(_onRouteActivated);
   }
-
-  int? get opacity => animating ? 0 : 1;
 
   @Output('expandedChange')
   Stream<bool> get onExpandedChangeOutput => _onExpandedChangeController.stream;
