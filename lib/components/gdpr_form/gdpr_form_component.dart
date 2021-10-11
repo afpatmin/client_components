@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/material_checkbox/material_checkbox.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:fo_components/components/fo_button/fo_button_component.dart';
-import 'package:fo_components/components/fo_dropdown_list/fo_dropdown_option.dart';
+import 'package:fo_components/components/fo_check/fo_check_component.dart';
 import 'package:fo_components/components/fo_dropdown_select/fo_dropdown_select_component.dart';
 import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
 import 'package:fo_components/components/fo_text_input/fo_text_input_component.dart';
@@ -24,7 +23,7 @@ import 'package:intl/intl.dart';
       FoDropdownSelectComponent,
       FoTextAreaInputComponent,
       FoTextInputComponent,
-      MaterialCheckboxComponent,
+      FoCheckComponent,
       NgIf
     ],
     pipes: [CapitalizePipe],
@@ -122,24 +121,14 @@ class GdprFormComponent implements OnDestroy {
   set open(bool v) {
     options = {
       '': [
-        FoDropdownOption()
-          ..id = 'gdpr_fetch_my_info'
-          ..label = msgFetchMyInfo,
-        FoDropdownOption()
-          ..id = 'gdpr_fetch_my_info_portable'
-          ..label = msgFetchMyInfoPortable,
-        FoDropdownOption()
-          ..id = 'gdpr_change_my_info'
-          ..label = msgChangeMyInfo,
-        FoDropdownOption()
-          ..id = 'gdpr_limit_my_data_processing'
-          ..label = msgLimitMyDataProcessing,
-        FoDropdownOption()
-          ..id = 'gdpr_oppose_my_data_processing'
-          ..label = msgOpposeMyDataProcessing,
-        FoDropdownOption()
-          ..id = 'gdpr_erase_me'
-          ..label = msgEraseMe
+        FoDropdownOption('gdpr_fetch_my_info', msgFetchMyInfo),
+        FoDropdownOption('gdpr_fetch_my_info_portable', msgFetchMyInfoPortable),
+        FoDropdownOption('gdpr_change_my_info', msgChangeMyInfo),
+        FoDropdownOption(
+            'gdpr_limit_my_data_processing', msgLimitMyDataProcessing),
+        FoDropdownOption(
+            'gdpr_oppose_my_data_processing', msgOpposeMyDataProcessing),
+        FoDropdownOption('gdpr_erase_me', msgEraseMe)
       ]
     };
     _open = v;

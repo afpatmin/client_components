@@ -2,16 +2,8 @@ import 'dart:async';
 import 'dart:html' as html;
 
 import 'package:angular/angular.dart';
-import 'package:angular/security.dart' as security;
-import 'package:angular_components/material_button/material_button.dart';
-import 'package:angular_components/material_icon/material_icon.dart';
-import 'package:angular_components/material_list/material_list.dart';
-import 'package:angular_components/material_list/material_list_item.dart';
-import 'package:angular_components/material_tooltip/material_tooltip.dart';
 import 'package:angular_router/angular_router.dart';
-import 'package:fo_components/components/fo_modal/fo_modal_component.dart';
 import 'package:fo_components/pipes/capitalize_pipe.dart';
-import 'package:intl/intl.dart';
 
 @Component(
     selector: 'app-layout',
@@ -19,12 +11,6 @@ import 'package:intl/intl.dart';
     templateUrl: 'app_layout_component.html',
     directives: [
       coreDirectives,
-      FoModalComponent,
-      MaterialButtonComponent,
-      MaterialIconComponent,
-      MaterialListComponent,
-      MaterialListItemComponent,
-      MaterialTooltipDirective,
       routerDirectives,
     ],
     pipes: [CapitalizePipe])
@@ -38,8 +24,6 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   bool showScrollIndicator = false;
 
   bool animating = false;
-
-  final security.DomSanitizationService _domSanitizationService;
 
   final Router router;
 
@@ -67,15 +51,10 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
   @Input()
   List<FoSidebarCategory> categories = <FoSidebarCategory>[];
 
-  @Input()
-  security.SafeResourceUrl instructionsUrl;
-
-  @Input()
-  bool instructionsModalVisible = false;
-
-  AppLayoutComponent(this.router, this._domSanitizationService) {
+  AppLayoutComponent(this.router) {
     router.onRouteActivated.listen(_onRouteActivated);
   }
+
   @Output('expandedChange')
   Stream<bool> get onExpandedChangeOutput => _onExpandedChangeController.stream;
   String get pageHeader => _activeItem?.label;
@@ -88,8 +67,6 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
       ((html.window.innerWidth * 0.6) * 0.615).round().toString();
 
   String calcIFrameWidth() => (html.window.innerWidth * 0.6).toString();
-
-  String instructions() => Intl.message('Instruktioner');
 
   bool isActive(FoSidebarItem item) => item == _activeItem;
 
@@ -132,16 +109,6 @@ class AppLayoutComponent implements OnDestroy, AfterViewInit {
     for (final category in categories) {
       _activeItem = category.items
           .firstWhere((i) => path.contains(i.url), orElse: () => null);
-
-      if (_activeItem == null) {
-        instructionsUrl = null;
-      } else {
-        instructionsUrl = _activeItem?.instructionsUrl == null
-            ? null
-            : _domSanitizationService
-                .bypassSecurityTrustResourceUrl(_activeItem.instructionsUrl);
-        break;
-      }
     }
   }
 }
@@ -158,6 +125,5 @@ class FoSidebarItem {
 
   String label;
   final String icon;
-  final String instructionsUrl;
-  FoSidebarItem(this.url, this.label, this.icon, [this.instructionsUrl]);
+  FoSidebarItem(this.url, this.label, this.icon);
 }

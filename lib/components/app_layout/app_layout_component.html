@@ -16,20 +16,20 @@
           <div #list
                id="sidebar-list">
             <div #listContent>
-              <material-list *ngIf="expanded"
-                             class="fade-opacity"
-                             [style.opacity]="animating ? 0 : 1">
+              <ul *ngIf="expanded"
+                  class="fade-opacity"
+                  [style.opacity]="animating ? 0 : 1">
                 <div group
                      *ngFor="let category of categories">
                   <div label>{{$pipe.capitalize(category.title)}}</div>
-                  <material-list-item *ngFor="let item of category.items"
-                                      [class.active]="isActive(item)"
-                                      (click)="router.navigate(item.url)">
-                    <material-icon [icon]="item.icon"
-                                   baseline></material-icon>&nbsp;{{$pipe.capitalize(item.label)}}
-                  </material-list-item>
+                  <li *ngFor="let item of category.items"
+                      [class.active]="isActive(item)"
+                      (click)="router.navigate(item.url)">
+                    <fo-icon [icon]="item.icon"
+                             [material]="true"></fo-icon>&nbsp;{{$pipe.capitalize(item.label)}}
+                  </li>
                 </div>
-              </material-list>
+              </ul>
               <div id="collapsedList"
                    *ngIf="!expanded"
                    class="fade-opacity"
@@ -38,11 +38,9 @@
                   <div *ngFor="let item of category.items"
                        class="clickable text-center padding-top-small padding-bottom-small mini-item"
                        [class.active]="isActive(item)"
-                       [materialTooltip]="item.label"
                        (click)="router.navigate(item.url)">
-                    <material-icon [icon]="item.icon"
-                                   size="x-large"
-                                   baseline></material-icon>
+                    <fo-icon [icon]="item.icon"
+                             [material]="true"></fo-icon>
                   </div>
                   <hr />
                 </div>
@@ -53,13 +51,14 @@
                id="scrollIndicator"
                [class.expanded]="expanded"
                (click)="scrollNavToBottom()">
-            <material-icon icon="keyboard_arrow_down"></material-icon>
+            <fo-icon icon="keyboard_arrow_down"
+                     [material]="true"></fo-icon>
           </div>
           <div id="toggle"
                class="text-right"
                (click)="toggleExpanded()">
-            <material-icon baseline
-                           [icon]="(expanded) ? 'keyboard_arrow_left' : 'keyboard_arrow_right'"></material-icon>
+            <fo-icon [icon]="(expanded) ? 'keyboard_arrow_left' : 'keyboard_arrow_right'"
+                     [material]="true"></fo-icon>
           </div>
         </div>
       </td>
@@ -71,9 +70,10 @@
           <div class="col">
             <div id="page-header">
               <h3 class="margin-top-none margin-bottom-none">
-                <material-icon [style.color]="backgroundColor"
-                               baseline
-                               [icon]="pageIcon"></material-icon><span>{{$pipe.capitalize(pageHeader)}}</span>
+                <fo-icon [style.color]="backgroundColor"
+                         [icon]="pageIcon"
+                         [material]="true"></fo-icon>
+                <span>{{$pipe.capitalize(pageHeader)}}</span>
               </h3>
               <div id="page-content">
                 <ng-content></ng-content>
@@ -85,13 +85,3 @@
     </tr>
   </table>
 </div>
-<fo-modal [title]="instructions()"
-          *ngIf="instructionsModalVisible"
-          [(visible)]="instructionsModalVisible">
-  <iframe [attr.width]="calcIFrameWidth()"
-          [attr.height]="calcIFrameHeight()"
-          [src]="instructionsUrl"
-          frameborder="0"
-          allowfullscreen
-          scrolling="no"></iframe>
-</fo-modal>
