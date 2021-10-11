@@ -69,6 +69,34 @@
               -ms-overflow-style: none;
               div#collapsedList {
                 margin-top: 0.5em;
+                .category {
+                  border-bottom: 1px solid #eee;
+                }
+              }
+              div.label {
+                padding: 1em 0.5em 0.25em 0.5em;
+                border-bottom: 1px solid #eee;
+                color: #888;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+              ul {
+                color: #333;
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                li {
+                  padding: 0.5em;
+                  cursor: pointer;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
+                li.active,
+                li:hover {
+                  background-color: #eee;
+                }
               }
             }
 
@@ -79,6 +107,7 @@
             div.mini-item {
               cursor: pointer;
               text-align: center;
+              line-height: 2em;
               fo-icon {
                 color: #888;
               }
@@ -101,7 +130,7 @@
             padding: 0.5em 0;
             color: black;
             position: absolute;
-            bottom: 40px;
+            bottom: 36px;
             width: 100%;
             fo-icon {
               margin-right: 0.5em;

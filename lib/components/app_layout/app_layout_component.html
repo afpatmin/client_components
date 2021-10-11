@@ -29,7 +29,8 @@
               </ng-container>
               <div id="collapsedList"
                    *ngIf="!expanded">
-                <div *ngFor="let category of categories">
+                <div *ngFor="let category of categories"
+                     class="category">
                   <div *ngFor="let item of category.items"
                        class="mini-item"
                        [class.active]="isActive(item)"
@@ -37,7 +38,6 @@
                     <fo-icon [icon]="item.icon"
                              [material]="true"></fo-icon>
                   </div>
-                  <hr />
                 </div>
               </div>
             </div>
