@@ -6,7 +6,7 @@
                (actionButtonTrigger)="onAdd()">
 </fo-text-input>
 <div id="output"
-     *ngIf="value?.isEmpty == false">
+     *ngIf="value.isEmpty == false">
   <fo-button *ngFor="let element of value"
              [disabled]="disabled"
              [label]="element"
