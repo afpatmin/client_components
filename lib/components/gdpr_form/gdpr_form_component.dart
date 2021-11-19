@@ -27,7 +27,7 @@ import 'package:intl/intl.dart';
       NgIf
     ],
     pipes: [CapitalizePipe],
-    changeDetection: ChangeDetectionStrategy.OnPush)
+    changeDetection: ChangeDetectionStrategy.Default)
 class GdprFormComponent implements OnDestroy {
   final ControlGroup form;
   bool termsChecked = false;
